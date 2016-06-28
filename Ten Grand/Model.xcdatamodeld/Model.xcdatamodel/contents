@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
+    <entity name="Account" representedClassName=".Account" syncable="YES">
+        <attribute name="balance" attributeType="Double" defaultValueString="0.0" indexed="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="time" attributeType="Double" defaultValueString="0.0" indexed="YES" syncable="YES"/>
+        <relationship name="deposits" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Deposit" inverseName="account" inverseEntity="Deposit" syncable="YES"/>
+    </entity>
+    <entity name="Deposit" representedClassName=".Deposit" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="account" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="deposits" inverseEntity="Account" syncable="YES"/>
+    </entity>
+    <entity name="StoreItem" representedClassName=".StoreItem" syncable="YES">
+        <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="owned" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Account" positionX="-371" positionY="18" width="128" height="103"/>
+        <element name="Deposit" positionX="-54" positionY="18" width="128" height="103"/>
+        <element name="StoreItem" positionX="-198" positionY="72" width="128" height="105"/>
+    </elements>
+</model>
