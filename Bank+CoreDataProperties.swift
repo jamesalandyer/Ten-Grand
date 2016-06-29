@@ -1,5 +1,5 @@
 //
-//  Account+CoreDataProperties.swift
+//  Bank+CoreDataProperties.swift
 //  Ten Grand
 //
 //  Created by James Dyer on 6/28/16.
@@ -12,12 +12,10 @@
 import Foundation
 import CoreData
 
-extension Account {
+extension Bank {
 
-    @NSManaged var balance: NSNumber?
-    @NSManaged var name: String?
-    @NSManaged var time: NSNumber?
-    @NSManaged var deposits: NSSet?
-    @NSManaged var bank: Bank?
+    @NSManaged var netWorth: NSNumber?
+    @NSManaged var cash: NSNumber?
+    @NSManaged var accounts: NSSet?
 
 }

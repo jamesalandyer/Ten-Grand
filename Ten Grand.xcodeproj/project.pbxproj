@@ -21,13 +21,20 @@
 		2B18A0011D21D3CA00DA16D5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B189FFF1D21D3CA00DA16D5 /* Model.xcdatamodeld */; };
 		2B18A0061D21D61600DA16D5 /* Deposit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0021D21D61600DA16D5 /* Deposit+CoreDataProperties.swift */; };
 		2B18A0071D21D61600DA16D5 /* Deposit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0031D21D61600DA16D5 /* Deposit.swift */; };
-		2B18A0081D21D61600DA16D5 /* Account+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0041D21D61600DA16D5 /* Account+CoreDataProperties.swift */; };
-		2B18A0091D21D61600DA16D5 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0051D21D61600DA16D5 /* Account.swift */; };
 		2B18A0131D2306CC00DA16D5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0121D2306CC00DA16D5 /* CustomButton.swift */; };
 		2B18A0151D2310D800DA16D5 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0141D2310D800DA16D5 /* CustomView.swift */; };
 		2B18A0181D231FA900DA16D5 /* StoreItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0161D231FA900DA16D5 /* StoreItem+CoreDataProperties.swift */; };
 		2B18A0191D231FA900DA16D5 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0171D231FA900DA16D5 /* StoreItem.swift */; };
 		2B18A01B1D2330BB00DA16D5 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A01A1D2330BB00DA16D5 /* InfoVC.swift */; };
+		2B18A0201D2343AF00DA16D5 /* Bank+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A01C1D2343AF00DA16D5 /* Bank+CoreDataProperties.swift */; };
+		2B18A0211D2343AF00DA16D5 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A01D1D2343AF00DA16D5 /* Bank.swift */; };
+		2B18A0221D2343AF00DA16D5 /* Account+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A01E1D2343AF00DA16D5 /* Account+CoreDataProperties.swift */; };
+		2B18A0231D2343AF00DA16D5 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A01F1D2343AF00DA16D5 /* Account.swift */; };
+		2B18A0251D23440C00DA16D5 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0241D23440C00DA16D5 /* CoreDataStack.swift */; };
+		2B18A0271D23456500DA16D5 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0261D23456500DA16D5 /* AccountCell.swift */; };
+		2B18A0291D23457500DA16D5 /* LogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0281D23457500DA16D5 /* LogCell.swift */; };
+		2B18A02B1D23459000DA16D5 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A02A1D23459000DA16D5 /* ItemCell.swift */; };
+		2B18A02D1D23560200DA16D5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A02C1D23560200DA16D5 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,13 +54,20 @@
 		2B18A0001D21D3CA00DA16D5 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		2B18A0021D21D61600DA16D5 /* Deposit+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Deposit+CoreDataProperties.swift"; path = "../Deposit+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2B18A0031D21D61600DA16D5 /* Deposit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Deposit.swift; path = ../Deposit.swift; sourceTree = "<group>"; };
-		2B18A0041D21D61600DA16D5 /* Account+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Account+CoreDataProperties.swift"; path = "../Account+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2B18A0051D21D61600DA16D5 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = ../Account.swift; sourceTree = "<group>"; };
 		2B18A0121D2306CC00DA16D5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		2B18A0141D2310D800DA16D5 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		2B18A0161D231FA900DA16D5 /* StoreItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StoreItem+CoreDataProperties.swift"; path = "../StoreItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2B18A0171D231FA900DA16D5 /* StoreItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreItem.swift; path = ../StoreItem.swift; sourceTree = "<group>"; };
 		2B18A01A1D2330BB00DA16D5 /* InfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
+		2B18A01C1D2343AF00DA16D5 /* Bank+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Bank+CoreDataProperties.swift"; path = "../Bank+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2B18A01D1D2343AF00DA16D5 /* Bank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bank.swift; path = ../Bank.swift; sourceTree = "<group>"; };
+		2B18A01E1D2343AF00DA16D5 /* Account+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Account+CoreDataProperties.swift"; path = "../Account+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2B18A01F1D2343AF00DA16D5 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = ../Account.swift; sourceTree = "<group>"; };
+		2B18A0241D23440C00DA16D5 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		2B18A0261D23456500DA16D5 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
+		2B18A0281D23457500DA16D5 /* LogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogCell.swift; sourceTree = "<group>"; };
+		2B18A02A1D23459000DA16D5 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		2B18A02C1D23560200DA16D5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +123,8 @@
 		2B189FEC1D21D0E800DA16D5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2B18A02C1D23560200DA16D5 /* Constants.swift */,
+				2B18A0241D23440C00DA16D5 /* CoreDataStack.swift */,
 				2B189FD91D21CF4700DA16D5 /* AppDelegate.swift */,
 				2B189FE51D21CF4800DA16D5 /* Info.plist */,
 				2B189FFF1D21D3CA00DA16D5 /* Model.xcdatamodeld */,
@@ -127,8 +143,9 @@
 			isa = PBXGroup;
 			children = (
 				2B18A00B1D21D63B00DA16D5 /* Client */,
+				2B18A01D1D2343AF00DA16D5 /* Bank.swift */,
+				2B18A01F1D2343AF00DA16D5 /* Account.swift */,
 				2B18A0031D21D61600DA16D5 /* Deposit.swift */,
-				2B18A0051D21D61600DA16D5 /* Account.swift */,
 				2B18A0171D231FA900DA16D5 /* StoreItem.swift */,
 				2B18A00A1D21D62000DA16D5 /* Generated */,
 			);
@@ -138,6 +155,9 @@
 		2B189FEF1D21D10200DA16D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2B18A0261D23456500DA16D5 /* AccountCell.swift */,
+				2B18A02A1D23459000DA16D5 /* ItemCell.swift */,
+				2B18A0281D23457500DA16D5 /* LogCell.swift */,
 				2B18A0121D2306CC00DA16D5 /* CustomButton.swift */,
 				2B18A0141D2310D800DA16D5 /* CustomView.swift */,
 			);
@@ -162,8 +182,9 @@
 		2B18A00A1D21D62000DA16D5 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				2B18A01C1D2343AF00DA16D5 /* Bank+CoreDataProperties.swift */,
+				2B18A01E1D2343AF00DA16D5 /* Account+CoreDataProperties.swift */,
 				2B18A0021D21D61600DA16D5 /* Deposit+CoreDataProperties.swift */,
-				2B18A0041D21D61600DA16D5 /* Account+CoreDataProperties.swift */,
 				2B18A0161D231FA900DA16D5 /* StoreItem+CoreDataProperties.swift */,
 			);
 			name = Generated;
@@ -247,24 +268,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B18A02D1D23560200DA16D5 /* Constants.swift in Sources */,
+				2B18A0251D23440C00DA16D5 /* CoreDataStack.swift in Sources */,
 				2B18A0071D21D61600DA16D5 /* Deposit.swift in Sources */,
 				2B18A0151D2310D800DA16D5 /* CustomView.swift in Sources */,
-				2B18A0091D21D61600DA16D5 /* Account.swift in Sources */,
 				2B189FFA1D21D32300DA16D5 /* StoreVC.swift in Sources */,
 				2B18A01B1D2330BB00DA16D5 /* InfoVC.swift in Sources */,
 				2B18A0181D231FA900DA16D5 /* StoreItem+CoreDataProperties.swift in Sources */,
+				2B18A0291D23457500DA16D5 /* LogCell.swift in Sources */,
+				2B18A0231D2343AF00DA16D5 /* Account.swift in Sources */,
+				2B18A02B1D23459000DA16D5 /* ItemCell.swift in Sources */,
 				2B189FFE1D21D35800DA16D5 /* LogVC.swift in Sources */,
 				2B189FFC1D21D34400DA16D5 /* StoreDetailVC.swift in Sources */,
+				2B18A0271D23456500DA16D5 /* AccountCell.swift in Sources */,
 				2B18A0191D231FA900DA16D5 /* StoreItem.swift in Sources */,
 				2B189FF61D21D2BD00DA16D5 /* AddAccountVC.swift in Sources */,
 				2B189FF41D21D20B00DA16D5 /* AccountsVC.swift in Sources */,
-				2B18A0081D21D61600DA16D5 /* Account+CoreDataProperties.swift in Sources */,
 				2B18A0011D21D3CA00DA16D5 /* Model.xcdatamodeld in Sources */,
 				2B189FF81D21D2F400DA16D5 /* AccountDetailVC.swift in Sources */,
 				2B189FDC1D21CF4700DA16D5 /* HomeVC.swift in Sources */,
 				2B18A0061D21D61600DA16D5 /* Deposit+CoreDataProperties.swift in Sources */,
 				2B189FDA1D21CF4700DA16D5 /* AppDelegate.swift in Sources */,
+				2B18A0221D2343AF00DA16D5 /* Account+CoreDataProperties.swift in Sources */,
+				2B18A0211D2343AF00DA16D5 /* Bank.swift in Sources */,
 				2B18A0131D2306CC00DA16D5 /* CustomButton.swift in Sources */,
+				2B18A0201D2343AF00DA16D5 /* Bank+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

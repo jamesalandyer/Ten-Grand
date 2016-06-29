@@ -12,6 +12,16 @@ import CoreData
 
 class StoreItem: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
+    convenience init(name: String, detail: String, price: Double, owned: Bool, context: NSManagedObjectContext) {
+        if let ent = NSEntityDescription.entityForName("StoreItem", inManagedObjectContext: context) {
+            self.init(entity: ent, insertIntoManagedObjectContext: context)
+            self.name = name
+            self.detail = detail
+            self.price = price
+            self.owned = owned
+        } else {
+            fatalError("Unable to find Entity name!")
+        }
+    }
 
 }

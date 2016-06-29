@@ -222,6 +222,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="accountsLabel" destination="cUH-at-boS" id="dlt-5r-OOi"/>
+                        <outlet property="netWorthLabel" destination="gZb-2Z-1RJ" id="QVf-MD-147"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -264,7 +268,7 @@
                                 <rect key="frame" x="0.0" y="50" width="600" height="437"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountCell" rowHeight="104" id="jhp-1m-BRA">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountCell" rowHeight="104" id="jhp-1m-BRA" customClass="AccountCell" customModule="Ten_Grand" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="104"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jhp-1m-BRA" id="irj-fj-eCe">
@@ -385,13 +389,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiV-73-Opf" customClass="CustomView" customModule="Ten_Grand" customModuleProvider="target">
+                            <view alpha="0.92000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiV-73-Opf" customClass="CustomView" customModule="Ten_Grand" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="552"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fP7-xg-aAe">
-                                        <rect key="frame" x="8" y="8" width="584" height="289"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fP7-xg-aAe">
+                                        <rect key="frame" x="8" y="8" width="584" height="313"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swimming_pool_detail" translatesAutoresizingMaskIntoConstraints="NO" id="4Nv-Lg-ZXq">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swimming pool_detail" translatesAutoresizingMaskIntoConstraints="NO" id="4Nv-Lg-ZXq">
                                                 <rect key="frame" x="242" y="0.0" width="100" height="86"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="86" id="dHT-Ub-rmo"/>
@@ -399,13 +403,13 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SWIMMING POOL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="P4F-7R-tEe">
-                                                <rect key="frame" x="0.0" y="94" width="584" height="37"/>
+                                                <rect key="frame" x="0.0" y="106" width="584" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="GsO-9h-np1"/>
                                                     <constraint firstAttribute="height" constant="37" id="cZI-yo-wPP"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="28"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="1" green="0.81960784310000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -414,7 +418,7 @@
                                                 </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="hXN-qD-Joa">
-                                                <rect key="frame" x="142" y="139" width="300" height="150"/>
+                                                <rect key="frame" x="142" y="163" width="300" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="BLf-ac-i8d"/>
                                                     <constraint firstAttribute="width" constant="300" id="VUb-vY-YFZ"/>
@@ -446,6 +450,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <action selector="buyButtonPressed:" destination="GmH-PV-kYc" eventType="touchUpInside" id="Ujc-Iv-1Em"/>
                                             <action selector="cancelButtonPressed:" destination="exK-vA-wHq" eventType="touchUpInside" id="bof-th-dYj"/>
                                         </connections>
                                     </button>
@@ -466,6 +471,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="cancelButtonPressed:" destination="exK-vA-wHq" eventType="touchUpInside" id="y5V-gm-CfY"/>
+                                            <action selector="dismissButtonPressed:" destination="GmH-PV-kYc" eventType="touchUpInside" id="cWq-OM-ZuT"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -489,6 +495,12 @@
                             <constraint firstItem="WfX-x5-Y19" firstAttribute="top" secondItem="eiV-73-Opf" secondAttribute="bottom" constant="20" id="u3A-Lf-6LX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buyButton" destination="6pT-RF-Zqa" id="5qY-N3-oUW"/>
+                        <outlet property="detailImageView" destination="4Nv-Lg-ZXq" id="hHd-St-ogI"/>
+                        <outlet property="detailLabel" destination="hXN-qD-Joa" id="7WN-M9-dst"/>
+                        <outlet property="detailTitle" destination="P4F-7R-tEe" id="lHF-do-WrY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tIt-L3-nPX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -525,39 +537,7 @@
                                     <constraint firstItem="zrO-OJ-Kqz" firstAttribute="top" secondItem="sdB-aP-vaG" secondAttribute="topMargin" id="weU-Vj-MIO"/>
                                 </constraints>
                             </view>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sSl-JM-bpn">
-                                <rect key="frame" x="153" y="179" width="294" height="129"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONGRATULATIONS YOU DID IT!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56L-og-13U">
-                                        <rect key="frame" x="18" y="0.0" width="258" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="258" id="C3m-Bm-Pqc"/>
-                                            <constraint firstAttribute="height" constant="21" id="w6r-Hb-c4h"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR HOUSE HAS BEEN COMPLETED!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DfV-bv-2Hm">
-                                        <rect key="frame" x="0.0" y="29" width="294" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="qHs-EI-tuA"/>
-                                            <constraint firstAttribute="width" constant="294" id="y5a-3I-wNf"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="completed_house" translatesAutoresizingMaskIntoConstraints="NO" id="MQt-1Z-0dy">
-                                        <rect key="frame" x="93.5" y="58" width="107" height="71"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="71" id="8sc-iz-fFy"/>
-                                            <constraint firstAttribute="width" constant="107" id="BxS-7S-4vL"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                            </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="T9q-7h-6yY">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="T9q-7h-6yY">
                                 <rect key="frame" x="20" y="58" width="560" height="421"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ws3-X7-qrU">
@@ -567,14 +547,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCell" id="DG3-gj-Kej">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ItemCell" id="DG3-gj-Kej" customClass="ItemCell" customModule="Ten_Grand" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lamp_locked" translatesAutoresizingMaskIntoConstraints="NO" id="Vo2-dQ-eKy">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vo2-dQ-eKy">
                                                     <rect key="frame" x="8" y="8" width="54" height="54"/>
                                                 </imageView>
                                             </subviews>
@@ -599,6 +579,9 @@
                                                 <exclude reference="k66-qR-Hze"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <outlet property="itemImage" destination="Vo2-dQ-eKy" id="Yi0-I9-Ycd"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -608,10 +591,8 @@
                             <constraint firstItem="sdB-aP-vaG" firstAttribute="top" secondItem="r79-nu-tk6" secondAttribute="bottom" id="6zh-8v-Zci"/>
                             <constraint firstItem="sdB-aP-vaG" firstAttribute="leading" secondItem="j2E-2l-A3A" secondAttribute="leading" id="8LA-c8-Tk2"/>
                             <constraint firstItem="T9q-7h-6yY" firstAttribute="leading" secondItem="j2E-2l-A3A" secondAttribute="leadingMargin" id="Pyb-Pd-i74"/>
-                            <constraint firstItem="sSl-JM-bpn" firstAttribute="centerY" secondItem="j2E-2l-A3A" secondAttribute="centerY" id="SDv-VD-Gsi"/>
                             <constraint firstItem="T9q-7h-6yY" firstAttribute="top" secondItem="sdB-aP-vaG" secondAttribute="bottom" constant="8" id="WEe-dZ-m84"/>
                             <constraint firstAttribute="trailing" secondItem="sdB-aP-vaG" secondAttribute="trailing" id="Xp4-vq-chx"/>
-                            <constraint firstItem="sSl-JM-bpn" firstAttribute="centerX" secondItem="j2E-2l-A3A" secondAttribute="centerX" id="at3-aA-UhV"/>
                             <constraint firstItem="n2J-Mq-Vu5" firstAttribute="top" secondItem="T9q-7h-6yY" secondAttribute="bottom" constant="8" id="lzV-ID-Lat"/>
                             <constraint firstItem="T9q-7h-6yY" firstAttribute="trailing" secondItem="j2E-2l-A3A" secondAttribute="trailingMargin" id="x3w-42-6B3"/>
                         </constraints>
@@ -625,7 +606,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="GmH-PV-kYc" kind="presentation" identifier="showStoreDetailVC" modalPresentationStyle="overCurrentContext" id="ywn-Ww-YAz"/>
+                        <outlet property="cashLabel" destination="zrO-OJ-Kqz" id="qWC-Eb-fhB"/>
+                        <outlet property="collectionView" destination="T9q-7h-6yY" id="rfR-s6-e1A"/>
+                        <outlet property="layoutFlow" destination="ws3-X7-qrU" id="ouS-mT-oz5"/>
+                        <segue destination="GmH-PV-kYc" kind="presentation" identifier="showStoreDetailVC" modalPresentationStyle="overFullScreen" id="ywn-Ww-YAz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KSb-ow-FDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -856,7 +840,7 @@
                                         <rect key="frame" x="8" y="50" width="584" height="437"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LogCell" rowHeight="44" id="ykN-8O-MWM">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LogCell" rowHeight="44" id="ykN-8O-MWM" customClass="LogCell" customModule="Ten_Grand" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="584" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ykN-8O-MWM" id="srK-HC-FMs">
@@ -1164,7 +1148,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JvK-xr-voy" customClass="CustomView" customModule="Ten_Grand" customModuleProvider="target">
+                            <view alpha="0.92000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JvK-xr-voy" customClass="CustomView" customModule="Ten_Grand" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="552"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="store_logo" translatesAutoresizingMaskIntoConstraints="NO" id="u6f-6W-jWZ">
@@ -1266,17 +1250,15 @@
         <image name="add_account_logo" width="58" height="48"/>
         <image name="approve_button" width="32" height="22"/>
         <image name="cancel_button" width="23" height="23"/>
-        <image name="completed_house" width="109" height="73"/>
         <image name="delete_account_button" width="32" height="28"/>
         <image name="detail_button" width="28" height="28"/>
         <image name="home_tab_selected" width="36" height="34"/>
         <image name="home_tab_unselected" width="39" height="36"/>
-        <image name="lamp_locked" width="40" height="56"/>
         <image name="logo_home" width="88" height="73"/>
         <image name="new_account_button" width="32" height="28"/>
         <image name="store_button" width="26" height="28"/>
         <image name="store_logo" width="90" height="74"/>
-        <image name="swimming_pool_detail" width="94" height="61"/>
+        <image name="swimming pool_detail" width="94" height="61"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="SOO-fS-EnT"/>
