@@ -11,14 +11,18 @@ import CoreData
 
 class StoreVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
 
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var layoutFlow: UICollectionViewFlowLayout!
-    @IBOutlet weak var cashLabel: UILabel!
+    //Outlets
+    @IBOutlet weak private var collectionView: UICollectionView!
+    @IBOutlet weak private var layoutFlow: UICollectionViewFlowLayout!
+    @IBOutlet weak private var cashLabel: UILabel!
     
+    //Properties
     var bank: Bank!
     
-    var fetchedResultsController: NSFetchedResultsController!
-    var sharedContext = CoreDataStack.stack.context
+    private var fetchedResultsController: NSFetchedResultsController!
+    private var sharedContext = CoreDataStack.stack.context
+    
+    //MARK: - Stack
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,12 +52,20 @@ class StoreVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateCashLabel), name: "Deposit", object: nil)
     }
     
+    //MARK: - Adjusting UI
+    
+    /*
+     Sets the center logo for the navigation bar.
+     */
     private func establishNavigation() {
         //Sets Navigation Image
         let logo = UIImage(named: "nav_logo.png")
         self.navigationItem.titleView = UIImageView(image: logo)
     }
     
+    /*
+     Sets the flow layout for the collection view.
+     */
     private func establishFlowLayout() {
         let space: CGFloat = 0
         let width = self.view.frame.width
@@ -64,10 +76,17 @@ class StoreVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         layoutFlow.itemSize = CGSizeMake(dimensions, dimensions)
     }
     
+    /*
+     Updates the current cash label.
+     
+     - Parameter notif: (Optional) A NSNotification of the notification being passed in.
+     */
     func updateCashLabel(notif: NSNotification?) {
         let cash = bank.cash!.doubleValue
         cashLabel.text = "CASH: \(formatMoneyIntoString(cash))"
     }
+    
+    //MARK: - CollectionView
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return fetchedResultsController.sections![section].numberOfObjects
@@ -91,6 +110,8 @@ class StoreVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         performSegueWithIdentifier("showStoreDetailVC", sender: fetchedResultsController.objectAtIndexPath(indexPath))
     }
     
+    //MARK: - NSFetchedResultsController
+    
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         
         switch type {
@@ -101,6 +122,8 @@ class StoreVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         }
         
     }
+    
+    //MARK: - Segue
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showStoreDetailVC" {

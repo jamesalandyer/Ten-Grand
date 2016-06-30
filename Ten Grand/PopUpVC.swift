@@ -10,16 +10,20 @@ import UIKit
 
 class PopUpVC: UIViewController {
 
-    @IBOutlet weak var welcomeLabel: UILabel!
-    @IBOutlet weak var newLabel: UILabel!
-    @IBOutlet weak var quoteLabel: UILabel!
-    @IBOutlet weak var quoteAuthorLabel: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    //Outlets
+    @IBOutlet weak private var welcomeLabel: UILabel!
+    @IBOutlet weak private var newLabel: UILabel!
+    @IBOutlet weak private var quoteLabel: UILabel!
+    @IBOutlet weak private var quoteAuthorLabel: UILabel!
+    @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
     
+    //Properties
     var launchedBefore: Bool!
     
-    var defaultQuote = "I'm convinced that about half of what separates successful entrepreneurs from the non-successful ones is pure perseverance.".uppercaseString
-    var defaultQuoteAuthor = "- Steve Jobs".uppercaseString
+    private var defaultQuote = "I'm convinced that about half of what separates successful entrepreneurs from the non-successful ones is pure perseverance.".uppercaseString
+    private var defaultQuoteAuthor = "- Steve Jobs".uppercaseString
+    
+    //MARK: - Stack
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +37,7 @@ class PopUpVC: UIViewController {
             newLabel.hidden = true
             quoteLabel.hidden = false
             quoteAuthorLabel.hidden = false
+            //Gets the quote of the day
             let parameters = [QuotesClient.Constants.QuotesParameterKeys.Category: QuotesClient.Constants.QuotesParameterValues.InspireCategory]
             QuotesClient.sharedInstance.taskForGETQuote(parameters, completionHandler: { (quote, author, error) in
                 performUIUpdatesOnMain {
@@ -64,6 +69,8 @@ class PopUpVC: UIViewController {
             quoteAuthorLabel.hidden = true
         }
     }
+    
+    //MARK: - Touches
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         dismissViewControllerAnimated(true, completion: nil)

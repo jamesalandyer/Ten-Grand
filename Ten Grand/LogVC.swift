@@ -11,13 +11,17 @@ import CoreData
 
 class LogVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
 
-    @IBOutlet weak var tableView: UITableView!
+    //Outlets
+    @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak var dismissButtonConstraint: NSLayoutConstraint!
     
-    var fetchedResultsController: NSFetchedResultsController!
+    //Properties
+    private var fetchedResultsController: NSFetchedResultsController!
     var account: Account!
     
-    var animEngineButtons: AnimationEngine!
+    private var animEngineButtons: AnimationEngine!
+    
+    //MARK: - Stack
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,9 +56,13 @@ class LogVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFet
         animEngineButtons.animateOnScreen()
     }
     
+    //MARK: - Actions
+    
     @IBAction func dismissButtonPressed(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    //MARK: - TableView
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchedResultsController.sections![section].numberOfObjects
@@ -73,6 +81,8 @@ class LogVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFet
             return LogCell()
         }
     }
+    
+    //MARK: - NSFetchedResultsController
     
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         tableView.beginUpdates()

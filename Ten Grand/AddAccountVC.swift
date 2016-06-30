@@ -10,13 +10,17 @@ import UIKit
 
 class AddAccountVC: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var accountNameTextField: UITextField!
-    @IBOutlet weak var createButton: CustomButton!
-    @IBOutlet weak var logoImageView: UIImageView!
+    //Outlets
+    @IBOutlet weak private var accountNameTextField: UITextField!
+    @IBOutlet weak private var createButton: CustomButton!
+    @IBOutlet weak private var logoImageView: UIImageView!
     @IBOutlet weak var createButtonConstraint: NSLayoutConstraint!
     @IBOutlet weak var cancelButtonConstraint: NSLayoutConstraint!
     
-    var animEngineButtons: AnimationEngine!
+    //Properties
+    private var animEngineButtons: AnimationEngine!
+    
+    //MARK: - Stack
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +47,8 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         
         unsubscribeFromKeyboardNotifications()
     }
+    
+    //MARK: - Actions
     
     @IBAction func createButtonPressed(sender: AnyObject) {
         let accountName = accountNameTextField.text
@@ -75,9 +81,14 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /*
+     Reverts the button color back to the original color.
+     */
     func revertButton() {
         createButton.borderColor = greenColor
     }
+    
+    //MARK: - TextField
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -133,6 +144,8 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.CGRectValue().height
     }
+    
+    //MARK: - Touches
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         accountNameTextField.resignFirstResponder()

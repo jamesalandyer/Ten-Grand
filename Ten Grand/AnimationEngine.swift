@@ -36,8 +36,10 @@ class AnimationEngine {
         self.constraints = constraints
     }
     
+    /*
+     Animates the constraints from the right side of the screen to the original constraint.
+     */
     func animateOnScreen() {
-        
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(0.75) * Double(NSEC_PER_SEC)))
         dispatch_after(time, dispatch_get_main_queue()) {
             var index = 0
@@ -59,6 +61,9 @@ class AnimationEngine {
         }
     }
     
+    /*
+     Animates the constraints from the left side of the screen to the original constraint.
+     */
     func animateBackOnScreen() {
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(0.75) * Double(NSEC_PER_SEC)))
         dispatch_after(time, dispatch_get_main_queue()) {
@@ -81,6 +86,9 @@ class AnimationEngine {
         }
     }
     
+    /*
+     Animates the constraints from the original constraint to the right side of the screen.
+     */
     func animateBackOffScreen() {
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(0.75) * Double(NSEC_PER_SEC)))
         dispatch_after(time, dispatch_get_main_queue()) {
@@ -103,6 +111,9 @@ class AnimationEngine {
         }
     }
     
+    /*
+     Animates the constraints from the original constraint to the left side of the screen.
+     */
     func animateOffScreen() {
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(0.75) * Double(NSEC_PER_SEC)))
         dispatch_after(time, dispatch_get_main_queue()) {

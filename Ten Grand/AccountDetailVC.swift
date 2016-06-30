@@ -10,37 +10,42 @@ import UIKit
 
 class AccountDetailVC: UIViewController {
 
-    @IBOutlet weak var accountNameLabel: UILabel!
-    @IBOutlet weak var accountBalanceLabel: UILabel!
+    //Outlets
+    @IBOutlet weak private var accountNameLabel: UILabel!
+    @IBOutlet weak private var accountBalanceLabel: UILabel!
     @IBOutlet weak var accountProgressWidth: NSLayoutConstraint!
-    @IBOutlet weak var accountTimeLabel: UILabel!
-    @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var timerButton: CustomButton!
-    @IBOutlet weak var saveButton: CustomButton!
-    @IBOutlet weak var cancelButton: CustomButton!
+    @IBOutlet weak private var accountTimeLabel: UILabel!
+    @IBOutlet weak private var timerLabel: UILabel!
+    @IBOutlet weak private var timerButton: CustomButton!
+    @IBOutlet weak private var saveButton: CustomButton!
+    @IBOutlet weak private var cancelButton: CustomButton!
     @IBOutlet weak var deleteAccountConstraint: NSLayoutConstraint!
     @IBOutlet weak var deleteButtonsConstraint: NSLayoutConstraint!
     @IBOutlet weak var timerConstraint: NSLayoutConstraint!
     @IBOutlet weak var timerButtonsConstraint: NSLayoutConstraint!
-    @IBOutlet weak var timerStackView: UIStackView!
-    @IBOutlet weak var timerButtonsStackView: UIStackView!
-    @IBOutlet weak var deleteAccountNavButton: UIBarButtonItem!
+    @IBOutlet weak private var timerStackView: UIStackView!
+    @IBOutlet weak private var timerButtonsStackView: UIStackView!
+    @IBOutlet weak private var deleteAccountNavButton: UIBarButtonItem!
     
+    //Properties
     var account: Account!
     
-    var timer: NSTimer!
-    var startDate: NSDate!
-    var elapsedTime: NSTimeInterval!
-    var stoppedDate: NSDate!
-    var totalStoppageTime: NSTimeInterval = 0
+    private var timer: NSTimer!
+    private var startDate: NSDate!
+    private var elapsedTime: NSTimeInterval!
+    private var stoppedDate: NSDate!
+    private var totalStoppageTime: NSTimeInterval = 0
     
-    var animEngineTimer: AnimationEngine!
-    var animEngineDeleteAccount: AnimationEngine!
+    private var animEngineTimer: AnimationEngine!
+    private var animEngineDeleteAccount: AnimationEngine!
+    
+    //MARK: - Stack
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         enableActionButtons(false)
+        
         let saveButtonSelectedImage = UIImage(named: "approve_button_selected.png")
         saveButton.setImage(saveButtonSelectedImage, forState: .Highlighted)
         let cancelButtonSelectedImage = UIImage(named: "cancel_button_selected.png")
@@ -89,6 +94,8 @@ class AccountDetailVC: UIViewController {
         animEngineTimer.animateOnScreen()
     }
     
+    //MARK: - Actions
+    
     @IBAction func timerButtonPressed(sender: AnyObject) {
         if timer == nil && startDate == nil { //No timer is in memory
             startDate = NSDate()
@@ -107,6 +114,7 @@ class AccountDetailVC: UIViewController {
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
         let amount = floor(elapsedTime) / 10000
+        
         let deposit = Deposit(amount: amount, context: CoreDataStack.stack.context)
         deposit.account = account
         let accountTime = account.time as! Double
@@ -137,11 +145,18 @@ class AccountDetailVC: UIViewController {
     }
     
     @IBAction func deleteButtonPressed(sender: AnyObject) {
+        timer.invalidate()
         timerButtonsStackView.hidden = true
         timerStackView.hidden = true
+        
         resetTimer()
+        
         CoreDataStack.stack.context.deleteObject(account)
         CoreDataStack.stack.save()
+        
+        let notif = NSNotification(name: "RemoveAccount", object: nil)
+        NSNotificationCenter.defaultCenter().postNotification(notif)
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -151,13 +166,21 @@ class AccountDetailVC: UIViewController {
         deleteAccountNavButton.enabled = true
     }
     
-    func establishNavigation() {
+    //MARK: - Adjusting UI
+    
+    /*
+     Sets the center logo for the navigation bar.
+     */
+    private func establishNavigation() {
         //Sets Navigation Image
         let logo = UIImage(named: "nav_logo.png")
         self.navigationItem.titleView = UIImageView(image: logo)
     }
     
-    func updateScreen() {
+    /*
+     Updates the screen to show the current data.
+     */
+    private func updateScreen() {
         accountNameLabel.text = account.name!.uppercaseString
         
         let accountBalance = account.balance!.doubleValue
@@ -169,7 +192,20 @@ class AccountDetailVC: UIViewController {
         convertTimeString()
     }
     
-    func convertTimeString() {
+    /*
+     Sets the action buttons to enabled or not.
+     
+     - Parameter enable: A bool of whether to enable the action buttons.
+     */
+    private func enableActionButtons(enable: Bool) {
+        saveButton.enabled = enable
+        cancelButton.enabled = enable
+    }
+    
+    /*
+     Converts the seconds from the account into hours, minutes, and seconds.
+     */
+    private func convertTimeString() {
         let time = (account.time as! Double)
         let hours = Int(time / 3600)
         let minutes = Int((time % 3600) / 60)
@@ -177,17 +213,32 @@ class AccountDetailVC: UIViewController {
         accountTimeLabel.text = "\(hours) HOUR(S), \(minutes) MINUTE(S), \(seconds) SECOND(S)"
     }
     
+    //MARK: - Timer
+    
+    /*
+     Starts the timer.
+     */
     func startTimer() {
         enableActionButtons(false)
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         timerLabel.text = "TAP TIMER TO STOP"
     }
     
+    /*
+     Sets the date that the user stopped the timer.
+     
+     - Parameter currentDate: (Optional) Sets the stop date, if nil it creates a current date.
+     */
     func setStopDate(currentDate: NSDate?) {
         stoppedDate = currentDate ?? NSDate()
         NSUserDefaults.standardUserDefaults().setObject(stoppedDate, forKey: "\(account.objectID)StoppedDate")
     }
     
+    /*
+     Sets the amount of time from the time the user hit stop to the current time.
+     
+     - Parameter currentDate: (Optional) Sets the stop date, if nil it creates a current date.
+     */
     func setStoppageTime(currentDate: NSDate?) {
         let currentTime = currentDate ?? NSDate()
         totalStoppageTime += currentTime.timeIntervalSinceDate(stoppedDate)
@@ -196,6 +247,9 @@ class AccountDetailVC: UIViewController {
         NSUserDefaults.standardUserDefaults().removeObjectForKey("\(account.objectID)StoppedDate")
     }
     
+    /*
+     Calculates the current time from the start date minus the time that the timer was stopped and updates the timer label to show it.
+     */
     func updateTime() {
         let currentTime = NSDate()
         elapsedTime = currentTime.timeIntervalSinceDate(startDate) - totalStoppageTime
@@ -204,11 +258,9 @@ class AccountDetailVC: UIViewController {
         timerButton.setTitle("$ \(formattedString)", forState: .Normal)
     }
     
-    func enableActionButtons(enable: Bool) {
-        saveButton.enabled = enable
-        cancelButton.enabled = enable
-    }
-    
+    /*
+     Resets the timer and all the items associated with the timer.
+     */
     func resetTimer() {
         timerButton.setTitle("$ 00,000.0000", forState: .Normal)
         enableActionButtons(false)
@@ -221,6 +273,8 @@ class AccountDetailVC: UIViewController {
         NSUserDefaults.standardUserDefaults().removeObjectForKey("\(account.objectID)StoppedDate")
         NSUserDefaults.standardUserDefaults().removeObjectForKey("\(account.objectID)StoppageTime")
     }
+    
+    //MARK: - Segue
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showLogVC" {

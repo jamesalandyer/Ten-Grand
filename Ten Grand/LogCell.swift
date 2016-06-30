@@ -10,9 +10,15 @@ import UIKit
 
 class LogCell: UITableViewCell {
 
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var amountLabel: UILabel!
+    //Outlets
+    @IBOutlet weak private var dateLabel: UILabel!
+    @IBOutlet weak private var amountLabel: UILabel!
     
+    /*
+     Configures the cell.
+     
+     - Parameter deposit: The deposit to configure the cell.
+     */
     func configureCell(deposit: Deposit) {
         let date = deposit.date!
         

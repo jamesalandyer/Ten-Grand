@@ -10,9 +10,13 @@ import UIKit
 
 class InfoVC: UIViewController {
 
+    //Outlets
     @IBOutlet weak var dismissButtonConstraint: NSLayoutConstraint!
     
-    var animEngineButtons: AnimationEngine!
+    //Properties
+    private var animEngineButtons: AnimationEngine!
+    
+    //MARK: - Stack
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +30,8 @@ class InfoVC: UIViewController {
         animEngineButtons.animateOnScreen()
     }
 
+    //MARK: - Actions
+    
     @IBAction func dismissButtonPressed(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }

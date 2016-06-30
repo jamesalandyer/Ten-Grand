@@ -10,10 +10,17 @@ import UIKit
 
 class AccountCell: UITableViewCell {
 
-    @IBOutlet weak var accountNameLabel: UILabel!
-    @IBOutlet weak var accountBalanceLabel: UILabel!
-    @IBOutlet weak var progressViewWidth: NSLayoutConstraint!
+    //Outlets
+    @IBOutlet weak private var accountNameLabel: UILabel!
+    @IBOutlet weak private var accountBalanceLabel: UILabel!
+    @IBOutlet weak private var progressViewWidth: NSLayoutConstraint!
     
+    /*
+     Configures the cell.
+     
+     - Parameter account: The account to configure the cell.
+     - Parameter width: The width of the users screen to configure the width of the progress bar.
+    */
     func configureCell(account: Account, width: CGFloat) {
         if NSUserDefaults.standardUserDefaults().objectForKey("\(account.objectID)StartDate") != nil && NSUserDefaults.standardUserDefaults().objectForKey("\(account.objectID)StoppedDate") == nil {
             accountNameLabel.textColor = greenColor

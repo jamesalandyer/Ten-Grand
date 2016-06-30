@@ -120,7 +120,6 @@
 				2B189FF01D21D10700DA16D5 /* Controller */,
 				2B189FEB1D21D0DB00DA16D5 /* Assets */,
 				2B189FEC1D21D0E800DA16D5 /* Supporting Files */,
-				2B189FED1D21D0F600DA16D5 /* Resources */,
 			);
 			path = "Ten Grand";
 			sourceTree = "<group>";
@@ -145,13 +144,6 @@
 				2B189FFF1D21D3CA00DA16D5 /* Model.xcdatamodeld */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		2B189FED1D21D0F600DA16D5 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		2B189FEE1D21D0FD00DA16D5 /* Model */ = {

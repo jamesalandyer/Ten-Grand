@@ -10,8 +10,14 @@ import UIKit
 
 class ItemCell: UICollectionViewCell {
     
-    @IBOutlet weak var itemImage: UIImageView!
+    //Outlets
+    @IBOutlet weak private var itemImage: UIImageView!
     
+    /*
+     Configures the cell.
+     
+     - Parameter item: The item to configure the cell.
+     */
     func configureCell(item: StoreItem) {
         
         var image = UIImage(named: "\(item.name!)_locked")

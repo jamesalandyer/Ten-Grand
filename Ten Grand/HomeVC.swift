@@ -11,16 +11,20 @@ import CoreData
 
 class HomeVC: UIViewController {
     
-    @IBOutlet weak var netWorthLabel: UILabel!
-    @IBOutlet weak var accountsLabel: UILabel!
+    //Outlets
+    @IBOutlet weak private var netWorthLabel: UILabel!
+    @IBOutlet weak private var accountsLabel: UILabel!
     
-    var fetchedResultsController: NSFetchedResultsController!
-    var sharedContext = CoreDataStack.stack.context
+    //Properties
+    private var fetchedResultsController: NSFetchedResultsController!
+    private var sharedContext = CoreDataStack.stack.context
     
-    var launchedBefore: Bool!
-    var showPopUp: Bool!
-    var bank: Bank!
+    private var launchedBefore: Bool!
+    private var showPopUp: Bool!
+    private var bank: Bank!
 
+    //MARK: - Stack
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,12 +56,13 @@ class HomeVC: UIViewController {
         bank = fetchedResultsController.fetchedObjects![0] as! Bank
         
         updateNetWorthLabel(nil)
-        updateAccountsLabel()
+        updateAccountsLabel(nil)
         
         establishTabBar()
         establishNavigation()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(addAccount), name: "AddAccount", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateAccountsLabel), name: "RemoveAccount", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateNetWorthLabel), name: "Deposit", object: nil)
     }
     
@@ -71,14 +76,22 @@ class HomeVC: UIViewController {
         }
     }
     
-    func establishNavigation() {
+    //MARK: - Adjusting UI
+    
+    /*
+     Sets up the navigation center image.
+     */
+    private func establishNavigation() {
         //Sets Navigation Image
         let logo = UIImage(named: "nav_logo.png")
         self.navigationItem.titleView = UIImageView(image: logo)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
     }
     
-    func establishTabBar() {
+    /*
+     Sets up the tab bar items to show without a title.
+     */
+    private func establishTabBar() {
         //Sets TabBar Adjustment
         if let tabBarItems = tabBarController?.tabBar.items {
             for items in tabBarItems {
@@ -87,12 +100,22 @@ class HomeVC: UIViewController {
         }
     }
     
+    /*
+     Updates the net worth label.
+     
+     -Parameter notif: (Optional) A NSNotification if triggered by a notification.
+     */
     func updateNetWorthLabel(notif: NSNotification?) {
         let netWorth = bank.netWorth!.doubleValue
         netWorthLabel.text = formatMoneyIntoString(netWorth)
     }
     
-    func updateAccountsLabel() {
+    /*
+     Updates the number of accounts label.
+     
+     -Parameter notif: (Optional) A NSNotification if triggered by a notification.
+     */
+    func updateAccountsLabel(notif: NSNotification?) {
         if let accountNumber = bank.accounts?.count {
             accountsLabel.text = "\(accountNumber)"
         } else {
@@ -100,6 +123,13 @@ class HomeVC: UIViewController {
         }
     }
     
+    //MARK: - Changing Data
+    
+    /*
+     Sets the bank for a new account and saves the context.
+     
+     -Parameter notif: (Optional) A NSNotification if triggered by a notification.
+     */
     func addAccount(notif: NSNotification) {
         let account = notif.object as! Account
         
@@ -107,10 +137,13 @@ class HomeVC: UIViewController {
         
         CoreDataStack.stack.save()
         
-        updateAccountsLabel()
+        updateAccountsLabel(nil)
     }
     
-    func createUserData() {
+    /*
+     Sets up all of the store items and the user's bank.
+     */
+    private func createUserData() {
         _ = Bank(netWorth: 0.00, cash: 0.00, context: sharedContext)
         _ = StoreItem(name: "artwork", detail: "Every home needs artwork! Furnish your home with the finest artwork the world has ever seen! You will be very pleased with the decor in your new home!", price: 600.00, owned: false, context: sharedContext)
         _ = StoreItem(name: "paint", detail: "Your house needs some painting! It looks so dull and this paint will make it look so retro! This will make your house the envy of your neighbors!", price: 400.00, owned: false, context: sharedContext)
@@ -124,6 +157,8 @@ class HomeVC: UIViewController {
         _ = StoreItem(name: "safe", detail: "Well, this does exactly what it says. It keeps thing safe! This is ideal to store all your money so nobody takes it!", price: 200.00, owned: false, context: sharedContext)
         CoreDataStack.stack.save()
     }
+    
+    //MARK: - Segue
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showPopUpVC" {

@@ -11,9 +11,13 @@ import CoreData
 
 class AccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
 
-    @IBOutlet weak var tableView: UITableView!
+    //Outlets
+    @IBOutlet weak private var tableView: UITableView!
     
-    var fetchedResultsController: NSFetchedResultsController!
+    //Properties
+    private var fetchedResultsController: NSFetchedResultsController!
+    
+    //MARK: - Stack
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,13 +46,20 @@ class AccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         tableView.reloadData()
     }
+    
+    //MARK: - Adjusting UI
 
-    func establishNavigation() {
+    /*
+     Sets the center logo for the navigation bar.
+     */
+    private func establishNavigation() {
         //Sets Navigation Image
         let logo = UIImage(named: "nav_logo.png")
         self.navigationItem.titleView = UIImageView(image: logo)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
     }
+    
+    //MARK: - TableView
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchedResultsController.sections![section].numberOfObjects
@@ -78,6 +89,8 @@ class AccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         performSegueWithIdentifier("showAccountDetailVC", sender: account)
     }
     
+    //MARK: - FetchedResultsController
+    
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         tableView.beginUpdates()
     }
@@ -99,6 +112,8 @@ class AccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         tableView.endUpdates()
     }
+    
+    //MARK: - Segue
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showAccountDetailVC" {

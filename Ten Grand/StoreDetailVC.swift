@@ -10,16 +10,20 @@ import UIKit
 
 class StoreDetailVC: UIViewController {
 
-    @IBOutlet weak var detailImageView: UIImageView!
-    @IBOutlet weak var detailTitle: UILabel!
-    @IBOutlet weak var detailLabel: UILabel!
-    @IBOutlet weak var buyButton: CustomButton!
+    //Outlets
+    @IBOutlet weak private var detailImageView: UIImageView!
+    @IBOutlet weak private var detailTitle: UILabel!
+    @IBOutlet weak private var detailLabel: UILabel!
+    @IBOutlet weak private var buyButton: CustomButton!
     @IBOutlet weak var buyButtonConstraint: NSLayoutConstraint!
     @IBOutlet weak var dismissButtonConstraint: NSLayoutConstraint!
     
+    //Properties
     var bank: Bank!
     var item: StoreItem!
-    var animEngineButtons: AnimationEngine!
+    private var animEngineButtons: AnimationEngine!
+    
+    //MARK: - Stack
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +49,8 @@ class StoreDetailVC: UIViewController {
         
         animEngineButtons.animateOnScreen()
     }
+    
+    //MARK: - Actions
 
     @IBAction func buyButtonPressed(sender: AnyObject) {
         if purchaseSuccessful(item) {
@@ -57,12 +63,20 @@ class StoreDetailVC: UIViewController {
         }
     }
     
-    
     @IBAction func dismissButtonPressed(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func purchaseSuccessful(item: StoreItem) -> Bool {
+    //MARK: - Purchase
+    
+    /*
+     Tries to purchase the item selected.
+     
+     - Parameter item: The item that is being purchased.
+     
+     - Returns: A Bool of whether the purchase went through.
+     */
+    private func purchaseSuccessful(item: StoreItem) -> Bool {
         let cash = bank.cash!.doubleValue
         let purchasePrice = item.price!.doubleValue
         
@@ -77,6 +91,9 @@ class StoreDetailVC: UIViewController {
         
     }
     
+    /*
+     Reverts the button back to the original color.
+     */
     func revertButton() {
         buyButton.borderColor = greenColor
     }
