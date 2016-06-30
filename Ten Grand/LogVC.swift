@@ -12,9 +12,12 @@ import CoreData
 class LogVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var dismissButtonConstraint: NSLayoutConstraint!
     
     var fetchedResultsController: NSFetchedResultsController!
     var account: Account!
+    
+    var animEngineButtons: AnimationEngine!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,14 @@ class LogVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFet
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        animEngineButtons = AnimationEngine(constraints: [dismissButtonConstraint])
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        animEngineButtons.animateOnScreen()
     }
     
     @IBAction func dismissButtonPressed(sender: AnyObject) {

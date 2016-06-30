@@ -13,17 +13,29 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var accountNameTextField: UITextField!
     @IBOutlet weak var createButton: CustomButton!
     @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var createButtonConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cancelButtonConstraint: NSLayoutConstraint!
+    
+    var animEngineButtons: AnimationEngine!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         accountNameTextField.delegate = self
+        
+        animEngineButtons = AnimationEngine(constraints: [createButtonConstraint, cancelButtonConstraint])
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         subscribeToKeyboardNotifications()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        animEngineButtons.animateOnScreen()
     }
     
     override func viewWillDisappear(animated: Bool) {

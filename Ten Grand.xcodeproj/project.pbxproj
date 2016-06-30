@@ -38,6 +38,8 @@
 		2B18A0311D25837500DA16D5 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0301D25837500DA16D5 /* PopUpVC.swift */; };
 		2B18A0331D25A0B200DA16D5 /* QuotesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0321D25A0B200DA16D5 /* QuotesClient.swift */; };
 		2B18A0351D25A24300DA16D5 /* QuotesConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0341D25A24300DA16D5 /* QuotesConstants.swift */; };
+		2B18A0371D25B4E200DA16D5 /* AnimationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0361D25B4E200DA16D5 /* AnimationEngine.swift */; };
+		D3731E82B591842B511CB001 /* Pods_Ten_Grand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E0741D7AF5355D10AA344C5 /* Pods_Ten_Grand.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,10 @@
 		2B18A0301D25837500DA16D5 /* PopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
 		2B18A0321D25A0B200DA16D5 /* QuotesClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotesClient.swift; sourceTree = "<group>"; };
 		2B18A0341D25A24300DA16D5 /* QuotesConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotesConstants.swift; sourceTree = "<group>"; };
+		2B18A0361D25B4E200DA16D5 /* AnimationEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationEngine.swift; sourceTree = "<group>"; };
+		6B9D0F8351DAA92A49661615 /* Pods-Ten Grand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ten Grand.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ten Grand/Pods-Ten Grand.release.xcconfig"; sourceTree = "<group>"; };
+		9E0741D7AF5355D10AA344C5 /* Pods_Ten_Grand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ten_Grand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE25B7AD0D085831B6821D56 /* Pods-Ten Grand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ten Grand.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ten Grand/Pods-Ten Grand.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3731E82B591842B511CB001 /* Pods_Ten_Grand.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +99,8 @@
 			children = (
 				2B189FD81D21CF4700DA16D5 /* Ten Grand */,
 				2B189FD71D21CF4700DA16D5 /* Products */,
+				90139305990A5F620ABE014F /* Pods */,
+				FDA89ACFD02D341A5C323FC6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -166,6 +175,7 @@
 				2B18A0281D23457500DA16D5 /* LogCell.swift */,
 				2B18A0121D2306CC00DA16D5 /* CustomButton.swift */,
 				2B18A0141D2310D800DA16D5 /* CustomView.swift */,
+				2B18A0361D25B4E200DA16D5 /* AnimationEngine.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -206,6 +216,23 @@
 			name = Client;
 			sourceTree = "<group>";
 		};
+		90139305990A5F620ABE014F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AE25B7AD0D085831B6821D56 /* Pods-Ten Grand.debug.xcconfig */,
+				6B9D0F8351DAA92A49661615 /* Pods-Ten Grand.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FDA89ACFD02D341A5C323FC6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E0741D7AF5355D10AA344C5 /* Pods_Ten_Grand.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -213,9 +240,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2B189FE81D21CF4800DA16D5 /* Build configuration list for PBXNativeTarget "Ten Grand" */;
 			buildPhases = (
+				4865DC2687F271424822E237 /* [CP] Check Pods Manifest.lock */,
 				2B189FD21D21CF4700DA16D5 /* Sources */,
 				2B189FD31D21CF4700DA16D5 /* Frameworks */,
 				2B189FD41D21CF4700DA16D5 /* Resources */,
+				37A784976FA9A166DCA2D297 /* [CP] Embed Pods Frameworks */,
+				1CCF5DF714B09B41F6D7690A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -272,11 +302,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1CCF5DF714B09B41F6D7690A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ten Grand/Pods-Ten Grand-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		37A784976FA9A166DCA2D297 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Ten Grand/Pods-Ten Grand-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4865DC2687F271424822E237 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2B189FD21D21CF4700DA16D5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B18A0371D25B4E200DA16D5 /* AnimationEngine.swift in Sources */,
 				2B18A02D1D23560200DA16D5 /* Constants.swift in Sources */,
 				2B18A0311D25837500DA16D5 /* PopUpVC.swift in Sources */,
 				2B18A0351D25A24300DA16D5 /* QuotesConstants.swift in Sources */,
@@ -417,6 +496,7 @@
 		};
 		2B189FE91D21CF4800DA16D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE25B7AD0D085831B6821D56 /* Pods-Ten Grand.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Ten Grand/Info.plist";
@@ -428,6 +508,7 @@
 		};
 		2B189FEA1D21CF4800DA16D5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B9D0F8351DAA92A49661615 /* Pods-Ten Grand.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Ten Grand/Info.plist";
@@ -456,6 +537,7 @@
 				2B189FEA1D21CF4800DA16D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

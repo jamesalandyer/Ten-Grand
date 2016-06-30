@@ -14,9 +14,12 @@ class StoreDetailVC: UIViewController {
     @IBOutlet weak var detailTitle: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var buyButton: CustomButton!
+    @IBOutlet weak var buyButtonConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dismissButtonConstraint: NSLayoutConstraint!
     
     var bank: Bank!
     var item: StoreItem!
+    var animEngineButtons: AnimationEngine!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,14 @@ class StoreDetailVC: UIViewController {
             buyButton.hidden = false
             buyButton.setTitle("BUY: \(formatMoneyIntoString(item.price!.doubleValue))", forState: .Normal)
         }
+        
+        animEngineButtons = AnimationEngine(constraints: [buyButtonConstraint, dismissButtonConstraint])
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        animEngineButtons.animateOnScreen()
     }
 
     @IBAction func buyButtonPressed(sender: AnyObject) {

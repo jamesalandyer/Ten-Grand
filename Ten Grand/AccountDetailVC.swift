@@ -18,6 +18,13 @@ class AccountDetailVC: UIViewController {
     @IBOutlet weak var timerButton: CustomButton!
     @IBOutlet weak var saveButton: CustomButton!
     @IBOutlet weak var cancelButton: CustomButton!
+    @IBOutlet weak var deleteAccountConstraint: NSLayoutConstraint!
+    @IBOutlet weak var deleteButtonsConstraint: NSLayoutConstraint!
+    @IBOutlet weak var timerConstraint: NSLayoutConstraint!
+    @IBOutlet weak var timerButtonsConstraint: NSLayoutConstraint!
+    @IBOutlet weak var timerStackView: UIStackView!
+    @IBOutlet weak var timerButtonsStackView: UIStackView!
+    @IBOutlet weak var deleteAccountNavButton: UIBarButtonItem!
     
     var account: Account!
     
@@ -26,6 +33,9 @@ class AccountDetailVC: UIViewController {
     var elapsedTime: NSTimeInterval!
     var stoppedDate: NSDate!
     var totalStoppageTime: NSTimeInterval = 0
+    
+    var animEngineTimer: AnimationEngine!
+    var animEngineDeleteAccount: AnimationEngine!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +78,15 @@ class AccountDetailVC: UIViewController {
         
         establishNavigation()
         updateScreen()
+        
+        animEngineTimer = AnimationEngine(constraints: [timerConstraint, timerButtonsConstraint])
+        animEngineDeleteAccount = AnimationEngine(constraints: [deleteAccountConstraint, deleteButtonsConstraint])
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        animEngineTimer.animateOnScreen()
     }
     
     @IBAction func timerButtonPressed(sender: AnyObject) {
@@ -109,6 +128,27 @@ class AccountDetailVC: UIViewController {
     
     @IBAction func cancelButtonPressed(sender: AnyObject) {
         resetTimer()
+    }
+    
+    @IBAction func deleteAccountButtonPressed(sender: AnyObject) {
+        deleteAccountNavButton.enabled = false
+        animEngineTimer.animateOffScreen()
+        animEngineDeleteAccount.animateOnScreen()
+    }
+    
+    @IBAction func deleteButtonPressed(sender: AnyObject) {
+        timerButtonsStackView.hidden = true
+        timerStackView.hidden = true
+        resetTimer()
+        CoreDataStack.stack.context.deleteObject(account)
+        CoreDataStack.stack.save()
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    @IBAction func deleteCancelButtonPressed(sender: AnyObject) {
+        animEngineDeleteAccount.animateBackOffScreen()
+        animEngineTimer.animateBackOnScreen()
+        deleteAccountNavButton.enabled = true
     }
     
     func establishNavigation() {
