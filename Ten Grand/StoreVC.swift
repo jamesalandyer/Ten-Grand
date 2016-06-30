@@ -14,7 +14,6 @@ class StoreVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var layoutFlow: UICollectionViewFlowLayout!
     @IBOutlet weak var cashLabel: UILabel!
-    @IBOutlet weak var boughtAllItemsStackView: UIStackView!
     
     var bank: Bank!
     
@@ -43,7 +42,10 @@ class StoreVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         establishNavigation()
         establishFlowLayout()
         
-        cashLabel.text = "\(formatMoneyIntoString(bank.cash!.doubleValue))"
+        updateCashLabel(nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateCashLabel), name: "Purchased", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateCashLabel), name: "Deposit", object: nil)
     }
     
     private func establishNavigation() {
@@ -60,6 +62,11 @@ class StoreVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         layoutFlow.minimumInteritemSpacing = space
         layoutFlow.minimumLineSpacing = space
         layoutFlow.itemSize = CGSizeMake(dimensions, dimensions)
+    }
+    
+    func updateCashLabel(notif: NSNotification?) {
+        let cash = bank.cash!.doubleValue
+        cashLabel.text = "CASH: \(formatMoneyIntoString(cash))"
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -99,6 +106,7 @@ class StoreVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         if segue.identifier == "showStoreDetailVC" {
             if let storeDetailVC = segue.destinationViewController as? StoreDetailVC {
                 storeDetailVC.item = sender as! StoreItem
+                storeDetailVC.bank = bank
             }
         }
     }

@@ -12,6 +12,14 @@ import CoreData
 
 class Deposit: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
+    convenience init(amount: Double, context: NSManagedObjectContext) {
+        if let ent = NSEntityDescription.entityForName("Deposit", inManagedObjectContext: context) {
+            self.init(entity: ent, insertIntoManagedObjectContext: context)
+            self.amount = amount
+            self.date = NSDate()
+        } else {
+            fatalError("Unable to find Entity name!")
+        }
+    }
 
 }

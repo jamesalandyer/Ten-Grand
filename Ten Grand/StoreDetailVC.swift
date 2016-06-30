@@ -15,6 +15,7 @@ class StoreDetailVC: UIViewController {
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var buyButton: CustomButton!
     
+    var bank: Bank!
     var item: StoreItem!
     
     override func viewDidLoad() {
@@ -35,12 +36,38 @@ class StoreDetailVC: UIViewController {
     }
 
     @IBAction func buyButtonPressed(sender: AnyObject) {
-        print("SAVE")
+        if purchaseSuccessful(item) {
+            buyButton.hidden = true
+            item.owned = true
+            CoreDataStack.stack.save()
+        } else {
+            buyButton.borderColor = redColor
+            NSTimer.scheduledTimerWithTimeInterval(0.35, target: self, selector: #selector(revertButton), userInfo: nil, repeats: false)
+        }
     }
     
     
     @IBAction func dismissButtonPressed(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func purchaseSuccessful(item: StoreItem) -> Bool {
+        let cash = bank.cash!.doubleValue
+        let purchasePrice = item.price!.doubleValue
+        
+        if cash >= purchasePrice {
+            bank.cash! = cash - purchasePrice
+            let notif = NSNotification(name: "Purchased", object: nil)
+            NSNotificationCenter.defaultCenter().postNotification(notif)
+            return true
+        } else {
+            return false
+        }
+        
+    }
+    
+    func revertButton() {
+        buyButton.borderColor = greenColor
     }
     
 }

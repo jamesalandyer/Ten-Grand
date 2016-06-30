@@ -44,11 +44,14 @@ class HomeVC: UIViewController {
         
         bank = fetchedResultsController.fetchedObjects![0] as! Bank
         
-        updateNetWorthLabel()
+        updateNetWorthLabel(nil)
         updateAccountsLabel()
         
         establishTabBar()
         establishNavigation()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(addAccount), name: "AddAccount", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateNetWorthLabel), name: "Deposit", object: nil)
     }
     
     func establishNavigation() {
@@ -67,9 +70,9 @@ class HomeVC: UIViewController {
         }
     }
     
-    func updateNetWorthLabel() {
+    func updateNetWorthLabel(notif: NSNotification?) {
         let netWorth = bank.netWorth!.doubleValue
-        netWorthLabel.text = "\(formatMoneyIntoString(netWorth))"
+        netWorthLabel.text = formatMoneyIntoString(netWorth)
     }
     
     func updateAccountsLabel() {
@@ -78,6 +81,16 @@ class HomeVC: UIViewController {
         } else {
             accountsLabel.text = "0"
         }
+    }
+    
+    func addAccount(notif: NSNotification) {
+        let account = notif.object as! Account
+        
+        account.bank = bank
+        
+        CoreDataStack.stack.save()
+        
+        updateAccountsLabel()
     }
     
     func createUserData() {

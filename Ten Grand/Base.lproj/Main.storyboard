@@ -264,15 +264,19 @@
                                     <constraint firstAttribute="height" constant="50" id="sfF-Df-kfe"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="104" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TAf-ib-EAx">
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="96" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TAf-ib-EAx">
                                 <rect key="frame" x="0.0" y="50" width="600" height="437"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountCell" rowHeight="104" id="jhp-1m-BRA" customClass="AccountCell" customModule="Ten_Grand" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="104"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AccountCell" rowHeight="96" id="jhp-1m-BRA" customClass="AccountCell" customModule="Ten_Grand" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jhp-1m-BRA" id="irj-fj-eCe">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="104"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="96"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PROGRAMMING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3V-o8-14n">
@@ -288,10 +292,10 @@
                                                     <rect key="frame" x="8" y="48" width="584" height="35"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PkU-1S-s1l" customClass="CustomView" customModule="Ten_Grand" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="4" height="35"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="35"/>
                                                             <color key="backgroundColor" red="1" green="0.81960784310000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="4" id="kLC-hU-qyh"/>
+                                                                <constraint firstAttribute="width" id="lLU-J4-07E"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -318,8 +322,8 @@
                                                     </variation>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Skk-BR-87Y">
-                                                    <rect key="frame" x="8" y="94" width="584" height="2"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <rect key="frame" x="50" y="94" width="500" height="2"/>
+                                                    <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="2" id="a6c-DK-Zck"/>
                                                     </constraints>
@@ -328,19 +332,30 @@
                                             <constraints>
                                                 <constraint firstItem="B3V-o8-14n" firstAttribute="leading" secondItem="irj-fj-eCe" secondAttribute="leadingMargin" id="1pN-no-ZJr"/>
                                                 <constraint firstItem="zuc-k0-Gt0" firstAttribute="leading" secondItem="irj-fj-eCe" secondAttribute="leadingMargin" id="2XR-g0-qhh"/>
-                                                <constraint firstItem="Skk-BR-87Y" firstAttribute="leading" secondItem="irj-fj-eCe" secondAttribute="leadingMargin" id="9Ey-U3-BzB"/>
+                                                <constraint firstItem="Skk-BR-87Y" firstAttribute="leading" secondItem="irj-fj-eCe" secondAttribute="leadingMargin" constant="42" id="9Ey-U3-BzB"/>
                                                 <constraint firstItem="zuc-k0-Gt0" firstAttribute="trailing" secondItem="irj-fj-eCe" secondAttribute="trailingMargin" id="AVA-uJ-FZx"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="QNj-TD-BcE" secondAttribute="trailing" id="DQa-de-UlC"/>
                                                 <constraint firstItem="QNj-TD-BcE" firstAttribute="centerX" secondItem="zuc-k0-Gt0" secondAttribute="centerX" id="GXQ-aE-lbH"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="B3V-o8-14n" secondAttribute="trailing" id="LjW-hZ-UcJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="Skk-BR-87Y" secondAttribute="bottom" id="MV7-zP-bUV"/>
                                                 <constraint firstItem="QNj-TD-BcE" firstAttribute="leading" secondItem="irj-fj-eCe" secondAttribute="leadingMargin" id="Xnv-VZ-JDA"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Skk-BR-87Y" secondAttribute="bottom" id="YBV-Te-3nU"/>
-                                                <constraint firstItem="Skk-BR-87Y" firstAttribute="trailing" secondItem="irj-fj-eCe" secondAttribute="trailingMargin" id="fv8-x0-ftG"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Skk-BR-87Y" secondAttribute="trailing" constant="42" id="fv8-x0-ftG"/>
                                                 <constraint firstItem="QNj-TD-BcE" firstAttribute="centerY" secondItem="zuc-k0-Gt0" secondAttribute="centerY" id="o19-lC-V2F"/>
                                                 <constraint firstItem="zuc-k0-Gt0" firstAttribute="top" secondItem="B3V-o8-14n" secondAttribute="bottom" constant="8" id="q0j-sm-jIl"/>
                                                 <constraint firstItem="B3V-o8-14n" firstAttribute="top" secondItem="irj-fj-eCe" secondAttribute="topMargin" id="xCW-zG-FPV"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="YBV-Te-3nU"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="accountBalanceLabel" destination="QNj-TD-BcE" id="7u0-DI-tCR"/>
+                                            <outlet property="accountNameLabel" destination="B3V-o8-14n" id="AjO-Kd-EIS"/>
+                                            <outlet property="progressViewWidth" destination="lLU-J4-07E" id="NvE-dn-DMl"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -357,11 +372,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0sF-oX-wam">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="wBk-Ys-EGo">
-                            <connections>
-                                <segue destination="0rj-5x-UY1" kind="show" id="SOO-fS-EnT"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="new_account_button" id="2XF-g0-u7s">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -370,6 +380,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="TAf-ib-EAx" id="LPF-hN-TLA"/>
                         <segue destination="0rj-5x-UY1" kind="show" identifier="showAccountDetailVC" id="82C-9l-GoO"/>
                     </connections>
                 </viewController>
@@ -389,6 +400,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3UV-tk-4zH" customClass="CustomView" customModule="Ten_Grand" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="552"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view alpha="0.92000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiV-73-Opf" customClass="CustomView" customModule="Ten_Grand" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="552"/>
                                 <subviews>
@@ -475,7 +490,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="fP7-xg-aAe" firstAttribute="leading" secondItem="eiV-73-Opf" secondAttribute="leading" constant="8" id="1IB-4o-5bj"/>
                                     <constraint firstAttribute="trailing" secondItem="fP7-xg-aAe" secondAttribute="trailing" constant="8" id="4Zo-gw-Vcd"/>
@@ -490,7 +505,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eiV-73-Opf" firstAttribute="leading" secondItem="cR6-sZ-iiA" secondAttribute="leading" id="2Ju-JP-wbe"/>
+                            <constraint firstItem="3UV-tk-4zH" firstAttribute="leading" secondItem="cR6-sZ-iiA" secondAttribute="leading" id="Ouz-nP-gvk"/>
+                            <constraint firstAttribute="trailing" secondItem="3UV-tk-4zH" secondAttribute="trailing" id="YUs-ly-cz9"/>
                             <constraint firstAttribute="trailing" secondItem="eiV-73-Opf" secondAttribute="trailing" id="YzP-ki-ACO"/>
+                            <constraint firstItem="WfX-x5-Y19" firstAttribute="top" secondItem="3UV-tk-4zH" secondAttribute="bottom" constant="20" id="ZaL-aC-Rkx"/>
+                            <constraint firstItem="3UV-tk-4zH" firstAttribute="top" secondItem="Lri-f3-pRp" secondAttribute="bottom" constant="8" id="gP8-NZ-T9p"/>
                             <constraint firstItem="eiV-73-Opf" firstAttribute="top" secondItem="Lri-f3-pRp" secondAttribute="bottom" constant="8" id="kAY-Fd-Axw"/>
                             <constraint firstItem="WfX-x5-Y19" firstAttribute="top" secondItem="eiV-73-Opf" secondAttribute="bottom" constant="20" id="u3A-Lf-6LX"/>
                         </constraints>
@@ -660,10 +679,10 @@
                                 <rect key="frame" x="8" y="70" width="584" height="35"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wg5-06-EcV" customClass="CustomView" customModule="Ten_Grand" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="6" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="35"/>
                                         <color key="backgroundColor" red="1" green="0.81960784310000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="6" id="Tmo-Wc-Hif"/>
+                                            <constraint firstAttribute="width" id="Tmo-Wc-Hif"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -711,14 +730,14 @@
                                         <color key="textColor" red="0.67843137249999996" green="0.67843137249999996" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2i8-Xy-vNJ" customClass="CustomButton" customModule="Ten_Grand" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2i8-Xy-vNJ" customClass="CustomButton" customModule="Ten_Grand" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="29" width="250" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="5Ga-ud-FJM"/>
                                             <constraint firstAttribute="height" constant="55" id="DLE-fD-oXJ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="30"/>
-                                        <state key="normal" title="$ 00,000.00">
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="29"/>
+                                        <state key="normal" title="$ 00,000.0000">
                                             <color key="titleColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -726,6 +745,9 @@
                                                 <color key="value" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="timerButtonPressed:" destination="0rj-5x-UY1" eventType="touchUpInside" id="qKH-sN-RKU"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -744,6 +766,9 @@
                                                 <color key="value" red="0.5568627451" green="0.85490196080000003" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="saveButtonPressed:" destination="0rj-5x-UY1" eventType="touchUpInside" id="tlc-A2-J9i"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRx-ec-CE1" customClass="CustomButton" customModule="Ten_Grand" customModuleProvider="target">
                                         <rect key="frame" x="95" y="0.0" width="75" height="49"/>
@@ -776,6 +801,9 @@
                                                 <color key="value" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="0rj-5x-UY1" eventType="touchUpInside" id="PPs-Zd-unV"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -806,6 +834,16 @@
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="accountBalanceLabel" destination="gSP-r0-xyp" id="qtp-j0-Ldl"/>
+                        <outlet property="accountNameLabel" destination="1ib-VJ-WOK" id="oNS-YZ-LC2"/>
+                        <outlet property="accountProgressWidth" destination="Tmo-Wc-Hif" id="WEY-iN-8ut"/>
+                        <outlet property="accountTimeLabel" destination="OsZ-JE-xlK" id="4Me-6H-YeG"/>
+                        <outlet property="cancelButton" destination="BFU-4N-2ed" id="RZV-io-MvU"/>
+                        <outlet property="saveButton" destination="v5n-bx-dxF" id="LRW-ti-q0q"/>
+                        <outlet property="timerButton" destination="2i8-Xy-vNJ" id="kfE-QP-Cd9"/>
+                        <outlet property="timerLabel" destination="KwO-Z3-I2c" id="Ypz-Oh-SiU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O23-13-f2S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1048,7 +1086,7 @@
                                                         </constraints>
                                                         <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="21"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                         <variation key="default">
                                                             <mask key="constraints">
                                                                 <exclude reference="rWo-14-ile"/>
@@ -1086,6 +1124,9 @@
                                                 <color key="value" red="0.55686274509803924" green="0.85490196078431369" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="createButtonPressed:" destination="exK-vA-wHq" eventType="touchUpInside" id="Yes-9g-rNc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1110,6 +1151,11 @@
                             <constraint firstItem="SPT-We-6AJ" firstAttribute="centerX" secondItem="Qja-pE-JGu" secondAttribute="centerX" id="yjj-QC-sPC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="accountNameTextField" destination="7g9-Sd-mY0" id="IDm-K8-aLI"/>
+                        <outlet property="createButton" destination="7iO-vO-VoU" id="nkQ-PN-e2S"/>
+                        <outlet property="logoImageView" destination="v3J-7J-Oww" id="s3v-hi-xem"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXu-he-QzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1148,6 +1194,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WeM-ur-e1J" customClass="CustomView" customModule="Ten_Grand" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="552"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view alpha="0.92000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JvK-xr-voy" customClass="CustomView" customModule="Ten_Grand" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="552"/>
                                 <subviews>
@@ -1209,7 +1259,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="aiF-ef-4jr" firstAttribute="centerY" secondItem="JvK-xr-voy" secondAttribute="centerY" id="097-Db-B4L"/>
                                     <constraint firstItem="CTd-sS-hKu" firstAttribute="centerX" secondItem="JvK-xr-voy" secondAttribute="centerX" id="2gE-qZ-4D7"/>
@@ -1232,10 +1282,14 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="WeM-ur-e1J" firstAttribute="top" secondItem="Fmu-7Y-2nO" secondAttribute="bottom" constant="8" id="1nQ-G2-tBU"/>
+                            <constraint firstItem="3E4-6I-vEj" firstAttribute="top" secondItem="WeM-ur-e1J" secondAttribute="bottom" constant="20" id="4gA-eA-E6Y"/>
                             <constraint firstItem="JvK-xr-voy" firstAttribute="leading" secondItem="g9x-eS-tWk" secondAttribute="leading" id="Af9-XI-6tS"/>
                             <constraint firstItem="3E4-6I-vEj" firstAttribute="top" secondItem="JvK-xr-voy" secondAttribute="bottom" constant="20" id="HMP-nG-4ea"/>
                             <constraint firstItem="JvK-xr-voy" firstAttribute="top" secondItem="Fmu-7Y-2nO" secondAttribute="bottom" constant="8" id="HfO-83-Xab"/>
                             <constraint firstAttribute="trailing" secondItem="JvK-xr-voy" secondAttribute="trailing" id="Mah-Aw-u8V"/>
+                            <constraint firstAttribute="trailing" secondItem="WeM-ur-e1J" secondAttribute="trailing" id="PjI-TV-zOg"/>
+                            <constraint firstItem="WeM-ur-e1J" firstAttribute="leading" secondItem="g9x-eS-tWk" secondAttribute="leading" id="cox-6g-yRL"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -1260,7 +1314,4 @@
         <image name="store_logo" width="90" height="74"/>
         <image name="swimming pool_detail" width="94" height="61"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="SOO-fS-EnT"/>
-    </inferredMetricsTieBreakers>
 </document>

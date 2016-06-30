@@ -19,7 +19,6 @@
 		2B189FFC1D21D34400DA16D5 /* StoreDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B189FFB1D21D34400DA16D5 /* StoreDetailVC.swift */; };
 		2B189FFE1D21D35800DA16D5 /* LogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B189FFD1D21D35800DA16D5 /* LogVC.swift */; };
 		2B18A0011D21D3CA00DA16D5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B189FFF1D21D3CA00DA16D5 /* Model.xcdatamodeld */; };
-		2B18A0061D21D61600DA16D5 /* Deposit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0021D21D61600DA16D5 /* Deposit+CoreDataProperties.swift */; };
 		2B18A0071D21D61600DA16D5 /* Deposit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0031D21D61600DA16D5 /* Deposit.swift */; };
 		2B18A0131D2306CC00DA16D5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0121D2306CC00DA16D5 /* CustomButton.swift */; };
 		2B18A0151D2310D800DA16D5 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0141D2310D800DA16D5 /* CustomView.swift */; };
@@ -35,6 +34,7 @@
 		2B18A0291D23457500DA16D5 /* LogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0281D23457500DA16D5 /* LogCell.swift */; };
 		2B18A02B1D23459000DA16D5 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A02A1D23459000DA16D5 /* ItemCell.swift */; };
 		2B18A02D1D23560200DA16D5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A02C1D23560200DA16D5 /* Constants.swift */; };
+		2B18A02F1D24C81600DA16D5 /* Deposit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A02E1D24C81600DA16D5 /* Deposit+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +52,6 @@
 		2B189FFB1D21D34400DA16D5 /* StoreDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailVC.swift; sourceTree = "<group>"; };
 		2B189FFD1D21D35800DA16D5 /* LogVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogVC.swift; sourceTree = "<group>"; };
 		2B18A0001D21D3CA00DA16D5 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		2B18A0021D21D61600DA16D5 /* Deposit+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Deposit+CoreDataProperties.swift"; path = "../Deposit+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2B18A0031D21D61600DA16D5 /* Deposit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Deposit.swift; path = ../Deposit.swift; sourceTree = "<group>"; };
 		2B18A0121D2306CC00DA16D5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		2B18A0141D2310D800DA16D5 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		2B18A0281D23457500DA16D5 /* LogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogCell.swift; sourceTree = "<group>"; };
 		2B18A02A1D23459000DA16D5 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		2B18A02C1D23560200DA16D5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2B18A02E1D24C81600DA16D5 /* Deposit+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Deposit+CoreDataProperties.swift"; path = "../Deposit+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +184,7 @@
 			children = (
 				2B18A01C1D2343AF00DA16D5 /* Bank+CoreDataProperties.swift */,
 				2B18A01E1D2343AF00DA16D5 /* Account+CoreDataProperties.swift */,
-				2B18A0021D21D61600DA16D5 /* Deposit+CoreDataProperties.swift */,
+				2B18A02E1D24C81600DA16D5 /* Deposit+CoreDataProperties.swift */,
 				2B18A0161D231FA900DA16D5 /* StoreItem+CoreDataProperties.swift */,
 			);
 			name = Generated;
@@ -287,11 +287,11 @@
 				2B18A0011D21D3CA00DA16D5 /* Model.xcdatamodeld in Sources */,
 				2B189FF81D21D2F400DA16D5 /* AccountDetailVC.swift in Sources */,
 				2B189FDC1D21CF4700DA16D5 /* HomeVC.swift in Sources */,
-				2B18A0061D21D61600DA16D5 /* Deposit+CoreDataProperties.swift in Sources */,
 				2B189FDA1D21CF4700DA16D5 /* AppDelegate.swift in Sources */,
 				2B18A0221D2343AF00DA16D5 /* Account+CoreDataProperties.swift in Sources */,
 				2B18A0211D2343AF00DA16D5 /* Bank.swift in Sources */,
 				2B18A0131D2306CC00DA16D5 /* CustomButton.swift in Sources */,
+				2B18A02F1D24C81600DA16D5 /* Deposit+CoreDataProperties.swift in Sources */,
 				2B18A0201D2343AF00DA16D5 /* Bank+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

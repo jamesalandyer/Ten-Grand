@@ -2,7 +2,7 @@
 //  Deposit+CoreDataProperties.swift
 //  Ten Grand
 //
-//  Created by James Dyer on 6/27/16.
+//  Created by James Dyer on 6/29/16.
 //  Copyright © 2016 James Dyer. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,8 +15,7 @@ import CoreData
 extension Deposit {
 
     @NSManaged var date: NSDate?
-    @NSManaged var time: NSNumber?
     @NSManaged var amount: NSNumber?
-    @NSManaged var account: NSManagedObject?
+    @NSManaged var account: Account?
 
 }
