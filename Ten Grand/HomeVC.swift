@@ -17,17 +17,24 @@ class HomeVC: UIViewController {
     var fetchedResultsController: NSFetchedResultsController!
     var sharedContext = CoreDataStack.stack.context
     
+    var launchedBefore: Bool!
+    var showPopUp: Bool!
     var bank: Bank!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !NSUserDefaults.standardUserDefaults().boolForKey("FirstLaunch") {
+        if !NSUserDefaults.standardUserDefaults().boolForKey("LaunchedBefore") {
             createUserData()
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "FirstLaunch")
-            //performSegueWithIdentifier("showPopUpVC", sender: false)
-        } else {
-            //performSegueWithIdentifier("showPopUpVC", sender: true)
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "LaunchedBefore")
+            showPopUp = true
+            launchedBefore = false
+        } else if let savedDate = NSUserDefaults.standardUserDefaults().stringForKey("PreviousPopUpDate") {
+            let todayDate = formatDateToMMddyy(NSDate())
+            if savedDate != todayDate {
+                showPopUp = true
+                launchedBefore = true
+            }
         }
         
         let fetchRequest = NSFetchRequest(entityName: "Bank")
@@ -52,6 +59,16 @@ class HomeVC: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(addAccount), name: "AddAccount", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateNetWorthLabel), name: "Deposit", object: nil)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if showPopUp != nil {
+            performSegueWithIdentifier("showPopUpVC", sender: nil)
+            showPopUp = nil
+            launchedBefore = nil
+        }
     }
     
     func establishNavigation() {
@@ -109,7 +126,11 @@ class HomeVC: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showStoreVC" {
+        if segue.identifier == "showPopUpVC" {
+            if let popUpVC = segue.destinationViewController as? PopUpVC {
+                popUpVC.launchedBefore = launchedBefore
+            }
+        } else if segue.identifier == "showStoreVC" {
             if let storeVC = segue.destinationViewController as? StoreVC {
                 storeVC.bank = bank
             }

@@ -160,10 +160,7 @@ class AccountDetailVC: UIViewController {
         let currentTime = NSDate()
         elapsedTime = currentTime.timeIntervalSinceDate(startDate) - totalStoppageTime
         let convertedTime = floor(elapsedTime) / 10000
-        let formatter = NSNumberFormatter()
-        formatter.minimumFractionDigits = 4
-        formatter.positiveFormat = "00,000.0000"
-        let formattedString = formatter.stringFromNumber(convertedTime)!
+        let formattedString = formatTimeIntoLongCurrency(convertedTime)
         timerButton.setTitle("$ \(formattedString)", forState: .Normal)
     }
     
@@ -183,6 +180,14 @@ class AccountDetailVC: UIViewController {
         NSUserDefaults.standardUserDefaults().removeObjectForKey("\(account.objectID)StartDate")
         NSUserDefaults.standardUserDefaults().removeObjectForKey("\(account.objectID)StoppedDate")
         NSUserDefaults.standardUserDefaults().removeObjectForKey("\(account.objectID)StoppageTime")
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showLogVC" {
+            if let logVC = segue.destinationViewController as? LogVC {
+                logVC.account = account
+            }
+        }
     }
 
 }

@@ -10,10 +10,16 @@ import UIKit
 
 class LogCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+    
+    func configureCell(deposit: Deposit) {
+        let date = deposit.date!
         
+        dateLabel.text = formatDateToMMddyy(date)
         
+        let amount = deposit.amount as! Double
+        amountLabel.text = "$ \(formatTimeIntoLongCurrency(amount))"
     }
 
 }

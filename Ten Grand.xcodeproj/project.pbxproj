@@ -35,6 +35,9 @@
 		2B18A02B1D23459000DA16D5 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A02A1D23459000DA16D5 /* ItemCell.swift */; };
 		2B18A02D1D23560200DA16D5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A02C1D23560200DA16D5 /* Constants.swift */; };
 		2B18A02F1D24C81600DA16D5 /* Deposit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A02E1D24C81600DA16D5 /* Deposit+CoreDataProperties.swift */; };
+		2B18A0311D25837500DA16D5 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0301D25837500DA16D5 /* PopUpVC.swift */; };
+		2B18A0331D25A0B200DA16D5 /* QuotesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0321D25A0B200DA16D5 /* QuotesClient.swift */; };
+		2B18A0351D25A24300DA16D5 /* QuotesConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0341D25A24300DA16D5 /* QuotesConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +71,9 @@
 		2B18A02A1D23459000DA16D5 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		2B18A02C1D23560200DA16D5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2B18A02E1D24C81600DA16D5 /* Deposit+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Deposit+CoreDataProperties.swift"; path = "../Deposit+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2B18A0301D25837500DA16D5 /* PopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
+		2B18A0321D25A0B200DA16D5 /* QuotesClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotesClient.swift; sourceTree = "<group>"; };
+		2B18A0341D25A24300DA16D5 /* QuotesConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotesConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				2B189FDB1D21CF4700DA16D5 /* HomeVC.swift */,
+				2B18A0301D25837500DA16D5 /* PopUpVC.swift */,
 				2B189FF31D21D20B00DA16D5 /* AccountsVC.swift */,
 				2B189FF51D21D2BD00DA16D5 /* AddAccountVC.swift */,
 				2B189FF71D21D2F400DA16D5 /* AccountDetailVC.swift */,
@@ -193,6 +200,8 @@
 		2B18A00B1D21D63B00DA16D5 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				2B18A0321D25A0B200DA16D5 /* QuotesClient.swift */,
+				2B18A0341D25A24300DA16D5 /* QuotesConstants.swift */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -269,7 +278,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B18A02D1D23560200DA16D5 /* Constants.swift in Sources */,
+				2B18A0311D25837500DA16D5 /* PopUpVC.swift in Sources */,
+				2B18A0351D25A24300DA16D5 /* QuotesConstants.swift in Sources */,
 				2B18A0251D23440C00DA16D5 /* CoreDataStack.swift in Sources */,
+				2B18A0331D25A0B200DA16D5 /* QuotesClient.swift in Sources */,
 				2B18A0071D21D61600DA16D5 /* Deposit.swift in Sources */,
 				2B18A0151D2310D800DA16D5 /* CustomView.swift in Sources */,
 				2B189FFA1D21D32300DA16D5 /* StoreVC.swift in Sources */,
