@@ -7,15 +7,46 @@
 //
 
 import UIKit
+import CoreData
+import WatchConnectivity
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var bank: Bank!
+    
+    var session: WCSession? {
+        didSet {
+            if let session = session {
+                session.delegate = self
+                session.activateSession()
+            }
+        }
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let fetchRequest = NSFetchRequest(entityName: "Bank")
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "netWorth", ascending: true)]
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.stack.context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch let error as NSError {
+            print("Error while trying to perform a search: \n\(error)\n\(fetchedResultsController)")
+        }
+        
+        bank = fetchedResultsController.fetchedObjects![0] as! Bank
+        
+        if WCSession.isSupported() {
+            session = WCSession.defaultSession()
+        }
+        
         return true
     }
 
@@ -44,3 +75,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+extension AppDelegate: WCSessionDelegate {
+    
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+        print("HERE")
+        if let message = message["bank"] as? String {
+            
+            print(bank.netWorth!)
+            
+            replyHandler(["test": message])
+        }
+    }
+    
+}
