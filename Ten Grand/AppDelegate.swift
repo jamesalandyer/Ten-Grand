@@ -41,7 +41,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Error while trying to perform a search: \n\(error)\n\(fetchedResultsController)")
         }
         
-        bank = fetchedResultsController.fetchedObjects![0] as! Bank
+        if fetchedResultsController.fetchedObjects?.count > 0 {
+            let bank = fetchedResultsController.fetchedObjects![0] as! Bank
+            self.bank = bank
+        } else {
+            bank = Bank(netWorth: 0.00, cash: 0.00, context: CoreDataStack.stack.context)
+            CoreDataStack.stack.save()
+        }
         
         if WCSession.isSupported() {
             session = WCSession.defaultSession()
@@ -79,13 +85,95 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: WCSessionDelegate {
     
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
-        print("HERE")
-        if let message = message["bank"] as? String {
-            
-            print(bank.netWorth!)
-            
-            replyHandler(["test": message])
+        if let accounts = bank.accounts {
+            if let message = message["bank"] as? String {
+                if message == "initialData" {
+                    let accountsData = createAccountData(accounts)
+                    replyHandler(["accounts": accountsData])
+                }
+            } else {
+                performUIUpdatesOnMain {
+                    let messageCount = message.count
+                    
+                    if let message = message["account"] as? [String: AnyObject] {
+                        let accountID = message["ID"] as! String
+                        let matchingAccount = self.findAccount(accountID, accounts: accounts)
+                        
+                        let balance = message["balance"] as! Double
+                        let startDate = message["startDate"] as? NSDate ?? nil
+                        let stoppedDate = message["stoppedDate"] as? NSDate ?? nil
+                        let stoppageTime = message["stoppageTime"] as? Double ?? 0
+                        
+                        if let accountToUpdate = matchingAccount {
+                            accountToUpdate.balance = balance
+                            accountToUpdate.startDate = startDate
+                            accountToUpdate.stoppedDate = stoppedDate
+                            accountToUpdate.stoppageTime = stoppageTime
+                            
+                            if messageCount > 1 {
+                                if let time = message["time"] as? Double {
+                                    accountToUpdate.time = time
+                                }
+                            }
+                        }
+                    }
+                    if let message = message["deposit"] as? [String: AnyObject] {
+                        let depositAccount = message["ID"] as! String
+                        let matchingAccount = self.findAccount(depositAccount, accounts: accounts)
+                        
+                        if let matchingAccount = matchingAccount {
+                            let depositAmount = message["amount"] as! Double
+                            let depositDate = message["date"] as! NSDate
+                            let deposit = Deposit(amount: depositAmount, date: depositDate, context: CoreDataStack.stack.context)
+                            deposit.account = matchingAccount
+                            
+                            let bankNetWorth = matchingAccount.bank!.netWorth as! Double
+                            matchingAccount.bank!.netWorth = bankNetWorth + depositAmount
+                            let bankCash = matchingAccount.bank!.cash as! Double
+                            matchingAccount.bank!.cash = bankCash + depositAmount
+                            
+                            let notif = NSNotification(name: "Deposit", object: nil)
+                            NSNotificationCenter.defaultCenter().postNotification(notif)
+                        }
+                    }
+                    
+                    let notif = NSNotification(name: "Update", object: nil)
+                    NSNotificationCenter.defaultCenter().postNotification(notif)
+                    CoreDataStack.stack.save()
+                }
+            }
         }
+    }
+    
+    private func createAccountData(accounts: NSSet) -> [[String: AnyObject]] {
+        var accountsData = [[String: AnyObject]]()
+        
+        for account in accounts {
+            let currentAccount = account as! Account
+            var newAccount = [String: AnyObject]()
+            newAccount["ID"] = "\(currentAccount.objectID)"
+            newAccount["name"] = currentAccount.name
+            newAccount["balance"] = currentAccount.balance
+            newAccount["time"] = currentAccount.time
+            newAccount["startDate"] = currentAccount.startDate
+            newAccount["stoppedDate"] = currentAccount.stoppedDate
+            newAccount["stoppageTime"] = currentAccount.stoppageTime
+            accountsData.append(newAccount)
+        }
+        
+        return accountsData
+    }
+    
+    private func findAccount(accountID: String, accounts: NSSet) -> Account? {
+        for account in accounts {
+            let currentAccount = account as! Account
+            
+            if "\(currentAccount.objectID)" == accountID {
+                return currentAccount
+            }
+        }
+        
+        return nil
     }
     
 }

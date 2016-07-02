@@ -14,4 +14,23 @@ class AccountRowController: NSObject {
     @IBOutlet var accountAmountLabel: WKInterfaceLabel!
     @IBOutlet var stateLabel: WKInterfaceLabel!
     
+    var account: Account? {
+        didSet {
+            if let account = account {
+                accountNameLabel.setText(account.name)
+                accountAmountLabel.setText(formatMoneyIntoString(account.balance))
+                if account.startDate != nil && account.stoppedDate == nil {
+                    stateLabel.setText("Active")
+                    stateLabel.setTextColor(UIColor.greenColor())
+                } else if account.startDate != nil && account.stoppedDate != nil {
+                    stateLabel.setText("Stopped")
+                    stateLabel.setTextColor(UIColor.redColor())
+                } else {
+                    stateLabel.setText("Inactive")
+                    stateLabel.setTextColor(UIColor.grayColor())
+                }
+            }
+        }
+    }
+    
 }

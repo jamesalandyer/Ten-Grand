@@ -141,10 +141,9 @@ class HomeVC: UIViewController {
     }
     
     /*
-     Sets up all of the store items and the user's bank.
+     Sets up all of the store items.
      */
     private func createUserData() {
-        _ = Bank(netWorth: 0.00, cash: 0.00, context: sharedContext)
         _ = StoreItem(name: "artwork", detail: "Every home needs artwork! Furnish your home with the finest artwork the world has ever seen! You will be very pleased with the decor in your new home!", price: 600.00, owned: false, context: sharedContext)
         _ = StoreItem(name: "paint", detail: "Your house needs some painting! It looks so dull and this paint will make it look so retro! This will make your house the envy of your neighbors!", price: 400.00, owned: false, context: sharedContext)
         _ = StoreItem(name: "swimming pool", detail: "Install a new swimming pool! You have always wanted to swim at your house and this is your chance! You could have a pool party for goodness sake!", price: 2000.00, owned: false, context: sharedContext)

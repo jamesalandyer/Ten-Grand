@@ -1,9 +1,9 @@
 //
 //  Account+CoreDataProperties.swift
-//  Ten Grand
+//  
 //
-//  Created by James Dyer on 6/28/16.
-//  Copyright © 2016 James Dyer. All rights reserved.
+//  Created by James Dyer on 7/1/16.
+//
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
@@ -17,7 +17,10 @@ extension Account {
     @NSManaged var balance: NSNumber?
     @NSManaged var name: String?
     @NSManaged var time: NSNumber?
-    @NSManaged var deposits: NSSet?
+    @NSManaged var stoppageTime: NSNumber?
+    @NSManaged var stoppedDate: NSDate?
+    @NSManaged var startDate: NSDate?
     @NSManaged var bank: Bank?
+    @NSManaged var deposits: NSSet?
 
 }

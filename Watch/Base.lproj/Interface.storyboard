@@ -8,7 +8,7 @@
         <!--All Accounts-->
         <scene sceneID="hIr-ql-NdT">
             <objects>
-                <controller identifier="Accounts" title="All Accounts" id="ogI-Xx-cHD" customClass="AccountsIC" customModule="Watch_Extension">
+                <controller title="All Accounts" id="ogI-Xx-cHD" customClass="AccountsIC" customModule="Watch_Extension">
                     <items>
                         <table alignment="left" id="ApD-A0-o6C" userLabel="Accounts Table">
                             <items>
@@ -70,14 +70,20 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" red="0.5568627451" green="0.85490196080000003" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" type="system" weight="semibold" pointSize="18"/>
+                                    <connections>
+                                        <action selector="saveButtonPressed" destination="Rvg-tP-c5d" id="jh3-y6-Whz"/>
+                                    </connections>
                                 </button>
                                 <button width="1" alignment="left" title="CLEAR" id="OP4-e2-7n1">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" type="system" weight="semibold" pointSize="18"/>
+                                    <connections>
+                                        <action selector="clearButtonPressed" destination="Rvg-tP-c5d" id="TiY-Hb-pAE"/>
+                                    </connections>
                                 </button>
                             </items>
-                            <edgeInsets key="margins" left="0.0" right="0.0" top="8" bottom="0.0"/>
+                            <edgeInsets key="margins" left="4" right="4" top="8" bottom="4"/>
                         </group>
                         <group width="1" height="150" alignment="center" contentMode="center" layout="vertical" id="7rx-1h-l5S" userLabel="Background Group">
                             <items>
@@ -93,16 +99,20 @@
                                         <items>
                                             <label alignment="center" verticalAlignment="center" text="$ 00,000.0000" id="CxO-vR-XVU">
                                                 <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="font" type="system" weight="semibold" pointSize="18"/>
+                                                <fontDescription key="font" type="system" weight="semibold" pointSize="17"/>
                                             </label>
                                         </items>
                                         <color key="backgroundColor" red="1" green="0.81960784310000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </group>
+                                    <connections>
+                                        <action selector="timerButtonPressed" destination="Rvg-tP-c5d" id="afD-2Y-85S"/>
+                                    </connections>
                                 </button>
                                 <label width="1" alignment="left" verticalAlignment="bottom" text="$1,234.43" textAlignment="center" id="KDA-C7-eey">
                                     <fontDescription key="font" type="system" weight="semibold" pointSize="18"/>
                                 </label>
                             </items>
+                            <edgeInsets key="margins" left="4" right="4" top="0.0" bottom="0.0"/>
                             <variation key="device=watch42mm" height="175"/>
                         </group>
                     </items>

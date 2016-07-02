@@ -7,9 +7,10 @@
 //
 
 import WatchKit
+import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
-
+    
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
     }

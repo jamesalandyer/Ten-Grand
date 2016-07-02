@@ -51,41 +51,15 @@ class AccountDetailVC: UIViewController {
         let cancelButtonSelectedImage = UIImage(named: "cancel_button_selected.png")
         cancelButton.setImage(cancelButtonSelectedImage, forState: .Highlighted)
 
-        //See if the user still has a timer in memory
-        if let date = NSUserDefaults.standardUserDefaults().objectForKey("\(account.objectID)StartDate") {
-            startDate = date as! NSDate
-        }
-        
-        //See if the timer was stopped in memory
-        if let stopDate = NSUserDefaults.standardUserDefaults().objectForKey("\(account.objectID)StoppedDate") {
-            stoppedDate = stopDate as! NSDate
-        }
-        
-        //See if the user has stopped the timer in memory at all
-        if let stoppageTime = NSUserDefaults.standardUserDefaults().objectForKey("\(account.objectID)StoppageTime") {
-            totalStoppageTime = stoppageTime as! NSTimeInterval
-            
-        }
-        
-        //The user has a timer in memory, but it is stopped
-        if startDate != nil && stoppedDate != nil {
-            let currentTime = NSDate()
-            //Set the timer to show the time minus the time when it was paused
-            setStoppageTime(currentTime)
-            //Then reset the stop date since the timer is still stopped
-            setStopDate(currentTime)
-            updateTime()
-            enableActionButtons(true)
-        } else if startDate != nil {
-            //The user has a timer in memory, start it
-            startTimer()
-        }
+        setTimeAdjustments()
         
         establishNavigation()
         updateScreen()
         
         animEngineTimer = AnimationEngine(constraints: [timerConstraint, timerButtonsConstraint])
         animEngineDeleteAccount = AnimationEngine(constraints: [deleteAccountConstraint, deleteButtonsConstraint])
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(newData), name: "Update", object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -99,7 +73,7 @@ class AccountDetailVC: UIViewController {
     @IBAction func timerButtonPressed(sender: AnyObject) {
         if timer == nil && startDate == nil { //No timer is in memory
             startDate = NSDate()
-            NSUserDefaults.standardUserDefaults().setObject(startDate, forKey: "\(account.objectID)StartDate")
+            account.startDate = startDate
             startTimer()
         } else if stoppedDate != nil { // The user restarts the timer
             setStoppageTime(nil)
@@ -115,7 +89,7 @@ class AccountDetailVC: UIViewController {
     @IBAction func saveButtonPressed(sender: AnyObject) {
         let amount = floor(elapsedTime) / 10000
         
-        let deposit = Deposit(amount: amount, context: CoreDataStack.stack.context)
+        let deposit = Deposit(amount: amount, date: nil, context: CoreDataStack.stack.context)
         deposit.account = account
         let accountTime = account.time as! Double
         account.time = accountTime + elapsedTime
@@ -231,7 +205,8 @@ class AccountDetailVC: UIViewController {
      */
     func setStopDate(currentDate: NSDate?) {
         stoppedDate = currentDate ?? NSDate()
-        NSUserDefaults.standardUserDefaults().setObject(stoppedDate, forKey: "\(account.objectID)StoppedDate")
+        account.stoppedDate = stoppedDate
+        CoreDataStack.stack.save()
     }
     
     /*
@@ -242,18 +217,26 @@ class AccountDetailVC: UIViewController {
     func setStoppageTime(currentDate: NSDate?) {
         let currentTime = currentDate ?? NSDate()
         totalStoppageTime += currentTime.timeIntervalSinceDate(stoppedDate)
-        NSUserDefaults.standardUserDefaults().setObject(totalStoppageTime, forKey: "\(account.objectID)StoppageTime")
+        account.stoppageTime = totalStoppageTime
         stoppedDate = nil
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("\(account.objectID)StoppedDate")
+        account.stoppedDate = nil
+        CoreDataStack.stack.save()
     }
     
     /*
      Calculates the current time from the start date minus the time that the timer was stopped and updates the timer label to show it.
      */
     func updateTime() {
-        let currentTime = NSDate()
-        elapsedTime = currentTime.timeIntervalSinceDate(startDate) - totalStoppageTime
-        let convertedTime = floor(elapsedTime) / 10000
+        var convertedTime: Double = 0
+        
+        if startDate != nil {
+            let currentTime = NSDate()
+            elapsedTime = currentTime.timeIntervalSinceDate(startDate) - totalStoppageTime
+            convertedTime = floor(elapsedTime) / 10000
+        } else {
+            enableActionButtons(false)
+        }
+        
         let formattedString = formatTimeIntoLongCurrency(convertedTime)
         timerButton.setTitle("$ \(formattedString)", forState: .Normal)
     }
@@ -269,9 +252,55 @@ class AccountDetailVC: UIViewController {
         stoppedDate = nil
         totalStoppageTime = 0
         elapsedTime  = nil
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("\(account.objectID)StartDate")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("\(account.objectID)StoppedDate")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("\(account.objectID)StoppageTime")
+        account.startDate = nil
+        account.stoppedDate = nil
+        account.stoppageTime = nil
+        CoreDataStack.stack.save()
+    }
+    
+    func setTimeAdjustments() {
+        startDate = nil
+        stoppedDate = nil
+        totalStoppageTime = 0
+        //See if the user still has a timer in memory
+        if let date = account.startDate {
+            startDate = date
+        }
+        
+        //See if the timer was stopped in memory
+        if let stopDate = account.stoppedDate {
+            stoppedDate = stopDate
+        }
+        
+        //See if the user has stopped the timer in memory at all
+        if let stoppageTime = account.stoppageTime as? Double {
+            totalStoppageTime = stoppageTime
+            
+        }
+        
+        //The user has a timer in memory, but it is stopped
+        if startDate != nil && stoppedDate != nil {
+            if timer != nil {
+                timer.invalidate()
+            }
+            let currentTime = NSDate()
+            //Set the timer to show the time minus the time when it was paused
+            setStoppageTime(currentTime)
+            //Then reset the stop date since the timer is still stopped
+            setStopDate(currentTime)
+            updateTime()
+            enableActionButtons(true)
+        } else if startDate != nil {
+            //The user has a timer in memory, start it
+            startTimer()
+            
+        }
+    }
+    
+    func newData(notif: NSNotification) {
+        setTimeAdjustments()
+        updateScreen()
+        updateTime()
     }
     
     //MARK: - Segue

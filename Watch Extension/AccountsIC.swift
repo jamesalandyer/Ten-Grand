@@ -15,48 +15,74 @@ class AccountsIC: WKInterfaceController, WCSessionDelegate {
 
     @IBOutlet var accountsTable: WKInterfaceTable!
     
-    var session: WCSession? {
-        didSet {
-            if let session = session {
-                session.delegate = self
-                session.activateSession()
-            }
-        }
+    var accounts = [Account]()
+    var accountSort: [Account] {
+        return accounts.sort { $0.name < $1.name }
     }
-    
-    var accounts: String = "HELLO"
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        // Configure interface objects here.
+        SharingService.sharedInstance.sendMessage(["bank": "initialData"]) { (response, error) in
+            
+            guard error == nil else {
+                print(error)
+                return
+            }
+            
+            guard let response = response else {
+                print("No Data")
+                return
+            }
+            
+            if let accountsData = response["accounts"] as? [[String: AnyObject]] {
+                self.parseAccountData(accountsData)
+            }
+            
+        }
+        
     }
     
     override func didAppear() {
         super.didAppear()
         
-        if WCSession.isSupported() {
-            // 2
-            session = WCSession.defaultSession()
-            // 3
-            session!.sendMessage(["bank": accounts], replyHandler: { (response) -> Void in
-                // 4
-                print("TEST")
-                }, errorHandler: { (error) -> Void in
-                    // 6
-                    print(error)
-            })
+        updateTable()
+    }
+    
+    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
+        let account = accountSort[rowIndex]
+        let controller = "Timer"
+        pushControllerWithName(controller, context: account)
+    }
+    
+    private func updateTable() {
+        self.accountsTable.setNumberOfRows(self.accountSort.count, withRowType: "AccountRow")
+            
+        for index in 0..<self.accountsTable.numberOfRows {
+            if let controller = self.accountsTable.rowControllerAtIndex(index) as? AccountRowController {
+                controller.account = self.accountSort[index]
+            }
         }
     }
-
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
-    }
-
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
+    
+    private func parseAccountData(data: [[String: AnyObject]]) {
+        accounts = [Account]()
+        
+        for account in data {
+            let accountID = account["ID"] as! String
+            let accountName = account["name"] as! String
+            let accountBalance = account["balance"] as! Double
+            let accountTime = account["time"] as! Double
+            let accountStartDate = account["startDate"] as? NSDate ?? nil
+            let accountStoppedDate = account["stoppedDate"] as? NSDate ?? nil
+            let accountStoppageTime = account["stoppageTime"] as? Double ?? nil
+            let newAccount = Account(accountID: accountID, name: accountName, balance: accountBalance, time: accountTime, startDate: accountStartDate, stoppedDate: accountStoppedDate, stoppageTime: accountStoppageTime)
+            self.accounts.append(newAccount)
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.updateTable()
+        })
     }
 
 }
