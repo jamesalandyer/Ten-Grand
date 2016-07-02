@@ -57,7 +57,13 @@ class TimerIC: WKInterfaceController {
     override func didDeactivate() {
         super.didDeactivate()
         
-        timer = nil
+        if timer != nil {
+            if timer.valid {
+                timer.invalidate()
+            }
+            
+            timer = nil
+        }
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }

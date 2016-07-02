@@ -10,9 +10,9 @@
             <objects>
                 <controller title="All Accounts" id="ogI-Xx-cHD" customClass="AccountsIC" customModule="Watch_Extension">
                     <items>
-                        <group width="1" alignment="left" hidden="YES" id="pEK-hh-rTP">
+                        <group width="1" height="1" alignment="center" verticalAlignment="center" hidden="YES" id="pEK-hh-rTP">
                             <items>
-                                <label width="1" alignment="left" text="No Accounts Yet" textAlignment="center" id="smJ-Rh-DvS">
+                                <label width="1" alignment="center" verticalAlignment="center" text="No Accounts Yet" textAlignment="center" id="smJ-Rh-DvS">
                                     <fontDescription key="font" type="system" weight="semibold" pointSize="15"/>
                                 </label>
                             </items>
@@ -71,6 +71,7 @@
                     <connections>
                         <outlet property="accountsTable" destination="ApD-A0-o6C" id="uQg-yy-T5G"/>
                         <outlet property="noAccountDisplay" destination="pEK-hh-rTP" id="Ylu-dm-R3l"/>
+                        <outlet property="noAccountsLabel" destination="smJ-Rh-DvS" id="8VX-Gn-8cs"/>
                     </connections>
                 </controller>
             </objects>

@@ -16,6 +16,7 @@ class AccountsIC: WKInterfaceController, WCSessionDelegate {
     //Outlets
     @IBOutlet var accountsTable: WKInterfaceTable!
     @IBOutlet var noAccountDisplay: WKInterfaceGroup!
+    @IBOutlet var noAccountsLabel: WKInterfaceLabel!
     
     //Properties
     private var accounts = [Account]()
@@ -28,8 +29,6 @@ class AccountsIC: WKInterfaceController, WCSessionDelegate {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        retrieveData(nil)
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(dataRecieved), name: "UpdateAccounts", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(retrieveData), name: "UpdateCurrentAccount", object: nil)
     }
@@ -37,7 +36,7 @@ class AccountsIC: WKInterfaceController, WCSessionDelegate {
     override func didAppear() {
         super.didAppear()
         
-        updateTable()
+        retrieveData(nil)
     }
     
     //MARK: - Actions
@@ -69,6 +68,7 @@ class AccountsIC: WKInterfaceController, WCSessionDelegate {
                 }
             }
         } else {
+            noAccountsLabel.setText("No Accounts Yet")
             noAccountDisplay.setHidden(false)
         }
     }
@@ -80,14 +80,22 @@ class AccountsIC: WKInterfaceController, WCSessionDelegate {
      */
     func retrieveData(notif: NSNotification?) {
         SharingService.sharedInstance.sendMessage(["bank": "retrieveData"]) { (response, error) in
+            self.accounts = [Account]()
+            
+            func nothingReturned() {
+                performUIUpdatesOnMain {
+                    self.noAccountsLabel.setText("Could Not Load")
+                    self.noAccountDisplay.setHidden(false)
+                }
+            }
             
             guard error == nil else {
-                print(error)
+                nothingReturned()
                 return
             }
             
             guard let response = response else {
-                print("No Data")
+                nothingReturned()
                 return
             }
             
@@ -115,7 +123,6 @@ class AccountsIC: WKInterfaceController, WCSessionDelegate {
      - Parameter data: The array of dictionaries to parse through.
      */
     private func parseAccountData(data: [[String: AnyObject]]) {
-        accounts = [Account]()
         
         for account in data {
             let accountID = account["ID"] as! String
