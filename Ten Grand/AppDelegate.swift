@@ -87,6 +87,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: WCSessionDelegate {
     
+    /*
+     Sends a message to the watch with all of the accounts.
+     
+     - Parameter notif: The NSNotification being passed through.
+     */
     func accountsChanged(notif: NSNotification) {
         if WCSession.isSupported() {
             
@@ -103,6 +108,11 @@ extension AppDelegate: WCSessionDelegate {
         }
     }
     
+    /*
+     Sends a message to the watch with account that changed.
+     
+     - Parameter notif: The NSNotification being passed through.
+     */
     func accountChanged(notif: NSNotification) {
         if WCSession.isSupported() {
             
@@ -122,6 +132,7 @@ extension AppDelegate: WCSessionDelegate {
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
         if let accounts = bank.accounts {
             if let message = message["bank"] as? String {
+                //Watch needs account data
                 if message == "retrieveData" {
                     let accountsData = createAccountData(accounts)
                     replyHandler(["accounts": accountsData])
@@ -132,6 +143,7 @@ extension AppDelegate: WCSessionDelegate {
                     var accountHasChanges = false
                     
                     if let message = message["account"] as? [String: AnyObject] {
+                        //Watch sent over new account data
                         let accountID = message["ID"] as! String
                         let matchingAccount = self.findAccount(accountID, accounts: accounts)
                         
@@ -156,6 +168,7 @@ extension AppDelegate: WCSessionDelegate {
                         }
                     }
                     if let message = message["deposit"] as? [String: AnyObject] {
+                        //Watch sent over deposit data
                         let depositAccount = message["ID"] as! String
                         let matchingAccount = self.findAccount(depositAccount, accounts: accounts)
                         
@@ -178,6 +191,7 @@ extension AppDelegate: WCSessionDelegate {
                     }
                     
                     if accountHasChanges {
+                        //Only update if their is a matching accoung and changes were sent
                         let notif = NSNotification(name: "Update", object: nil)
                         NSNotificationCenter.defaultCenter().postNotification(notif)
                         CoreDataStack.stack.save()
@@ -187,6 +201,13 @@ extension AppDelegate: WCSessionDelegate {
         }
     }
     
+    /*
+     Creates account data from a set of accounts.
+     
+     - Parameter accounts: The NSSet of accounts to create data from.
+     
+     - Returns: An array with a dictionary with each accounts data.
+     */
     private func createAccountData(accounts: NSSet) -> [[String: AnyObject]] {
         var accountsData = [[String: AnyObject]]()
         
@@ -199,6 +220,13 @@ extension AppDelegate: WCSessionDelegate {
         return accountsData
     }
     
+    /*
+     Creates account data for an account.
+     
+     - Parameter account: The account to create data from.
+     
+     - Returns: A dictionary with the account data.
+     */
     private func createDataForAccount(currentAccount: Account) -> [String: AnyObject] {
         var newAccount = [String: AnyObject]()
         newAccount["ID"] = "\(currentAccount.objectID)"
@@ -212,6 +240,14 @@ extension AppDelegate: WCSessionDelegate {
         return newAccount
     }
     
+    /*
+     Finds an account by searching the accounts to match the objectID of the account.
+     
+     - Parameter accountID: The string of the account's objectID being searched for.
+     - Parameter accounts: The NSSet of all of the accounts to search through.
+     
+     - Returns: (Optional) The account if found.
+     */
     private func findAccount(accountID: String, accounts: NSSet) -> Account? {
         for account in accounts {
             let currentAccount = account as! Account

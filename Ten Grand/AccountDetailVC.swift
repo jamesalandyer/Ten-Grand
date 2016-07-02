@@ -58,8 +58,6 @@ class AccountDetailVC: UIViewController {
         
         animEngineTimer = AnimationEngine(constraints: [timerConstraint, timerButtonsConstraint])
         animEngineDeleteAccount = AnimationEngine(constraints: [deleteAccountConstraint, deleteButtonsConstraint])
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -296,6 +294,11 @@ class AccountDetailVC: UIViewController {
         CoreDataStack.stack.save()
     }
     
+    //MARK: - Account
+    
+    /*
+     Sets up the time adjustments for the account.
+     */
     func setTimeAdjustments() {
         startDate = nil
         stoppedDate = nil
@@ -336,6 +339,11 @@ class AccountDetailVC: UIViewController {
         }
     }
     
+    /*
+     Updates the account when new data comes in from the watch.
+     
+     - Parameter notif: The NSNotification being passed through.
+     */
     func newData(notif: NSNotification) {
         performUIUpdatesOnMain { 
             self.setTimeAdjustments()
