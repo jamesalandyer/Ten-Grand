@@ -47,6 +47,13 @@ class AccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         tableView.reloadData()
     }
     
+    //MARK: - Actions
+    
+    @IBAction func addAccountButtonPressed(sender: AnyObject) {
+        performSegueWithIdentifier("showAddAccountVC", sender: nil)
+    }
+    
+    
     //MARK: - Adjusting UI
 
     /*
@@ -85,8 +92,9 @@ class AccountsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let account = fetchedResultsController.objectAtIndexPath(indexPath) as! Account
-        
+    
         performSegueWithIdentifier("showAccountDetailVC", sender: account)
+        
     }
     
     //MARK: - FetchedResultsController

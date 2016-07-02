@@ -12,11 +12,11 @@ import CoreData
 
 class Deposit: NSManagedObject {
 
-    convenience init(amount: Double, context: NSManagedObjectContext) {
+    convenience init(amount: Double, date: NSDate?, context: NSManagedObjectContext) {
         if let ent = NSEntityDescription.entityForName("Deposit", inManagedObjectContext: context) {
             self.init(entity: ent, insertIntoManagedObjectContext: context)
             self.amount = amount
-            self.date = NSDate()
+            self.date = date ?? NSDate()
         } else {
             fatalError("Unable to find Entity name!")
         }

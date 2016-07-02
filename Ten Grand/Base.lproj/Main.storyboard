@@ -481,13 +481,14 @@
                         <barButtonItem key="rightBarButtonItem" image="new_account_button" id="2XF-g0-u7s">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="exK-vA-wHq" kind="presentation" identifier="showAddAccountVC" id="db1-OY-ed8"/>
+                                <action selector="addAccountButtonPressed:" destination="n26-Yy-URK" id="bkD-Yz-Eza"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="TAf-ib-EAx" id="LPF-hN-TLA"/>
                         <segue destination="0rj-5x-UY1" kind="show" identifier="showAccountDetailVC" id="82C-9l-GoO"/>
+                        <segue destination="exK-vA-wHq" kind="presentation" identifier="showAddAccountVC" id="7xo-FV-vMy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TVz-eM-9Ke" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -3,6 +3,9 @@
     <entity name="Account" representedClassName=".Account" syncable="YES">
         <attribute name="balance" attributeType="Double" defaultValueString="0.0" indexed="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="stoppageTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="stoppedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="time" attributeType="Double" defaultValueString="0.0" indexed="YES" syncable="YES"/>
         <relationship name="bank" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bank" inverseName="accounts" inverseEntity="Bank" syncable="YES"/>
         <relationship name="deposits" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Deposit" inverseName="account" inverseEntity="Deposit" syncable="YES"/>
@@ -24,9 +27,9 @@
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="-587" positionY="-153" width="128" height="118"/>
+        <element name="Account" positionX="-587" positionY="-153" width="128" height="165"/>
+        <element name="Bank" positionX="-927" positionY="-189" width="128" height="88"/>
         <element name="Deposit" positionX="-281" positionY="-103" width="128" height="88"/>
         <element name="StoreItem" positionX="-857" positionY="3" width="128" height="105"/>
-        <element name="Bank" positionX="-927" positionY="-189" width="128" height="88"/>
     </elements>
 </model>

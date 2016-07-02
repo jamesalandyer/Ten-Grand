@@ -22,7 +22,7 @@ class AccountCell: UITableViewCell {
      - Parameter width: The width of the users screen to configure the width of the progress bar.
     */
     func configureCell(account: Account, width: CGFloat) {
-        if NSUserDefaults.standardUserDefaults().objectForKey("\(account.objectID)StartDate") != nil && NSUserDefaults.standardUserDefaults().objectForKey("\(account.objectID)StoppedDate") == nil {
+        if account.startDate != nil && account.stoppedDate == nil {
             accountNameLabel.textColor = greenColor
         } else {
             accountNameLabel.textColor = UIColor(red: 64.0 / 255.0, green: 64.0 / 255.0, blue: 64.0 / 255.0, alpha: 1.0)
