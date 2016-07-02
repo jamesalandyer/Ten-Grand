@@ -53,6 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             session = WCSession.defaultSession()
         }
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(accountsChanged), name: "AccountsChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(accountChanged), name: "AccountChanged", object: nil)
+        
         return true
     }
 
@@ -84,16 +87,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: WCSessionDelegate {
     
+    func accountsChanged(notif: NSNotification) {
+        if WCSession.isSupported() {
+            
+            session = WCSession.defaultSession()
+            
+            if session!.reachable {
+                if let accounts = bank.accounts {
+                    let accountsData = createAccountData(accounts)
+                
+                    session!.sendMessage(["accounts": accountsData], replyHandler: nil, errorHandler: nil)
+                }
+            }
+            
+        }
+    }
+    
+    func accountChanged(notif: NSNotification) {
+        if WCSession.isSupported() {
+            
+            session = WCSession.defaultSession()
+            
+            if session!.reachable {
+                if let changedAccount = notif.object as? Account {
+                    let updateData = createDataForAccount(changedAccount)
+                    
+                    session!.sendMessage(["update": updateData], replyHandler: nil, errorHandler: nil)
+                }
+            }
+            
+        }
+    }
+    
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
         if let accounts = bank.accounts {
             if let message = message["bank"] as? String {
-                if message == "initialData" {
+                if message == "retrieveData" {
                     let accountsData = createAccountData(accounts)
                     replyHandler(["accounts": accountsData])
                 }
             } else {
                 performUIUpdatesOnMain {
                     let messageCount = message.count
+                    var accountHasChanges = false
                     
                     if let message = message["account"] as? [String: AnyObject] {
                         let accountID = message["ID"] as! String
@@ -115,6 +151,8 @@ extension AppDelegate: WCSessionDelegate {
                                     accountToUpdate.time = time
                                 }
                             }
+                            
+                            accountHasChanges = true
                         }
                     }
                     if let message = message["deposit"] as? [String: AnyObject] {
@@ -134,12 +172,16 @@ extension AppDelegate: WCSessionDelegate {
                             
                             let notif = NSNotification(name: "Deposit", object: nil)
                             NSNotificationCenter.defaultCenter().postNotification(notif)
+                            
+                            accountHasChanges = true
                         }
                     }
                     
-                    let notif = NSNotification(name: "Update", object: nil)
-                    NSNotificationCenter.defaultCenter().postNotification(notif)
-                    CoreDataStack.stack.save()
+                    if accountHasChanges {
+                        let notif = NSNotification(name: "Update", object: nil)
+                        NSNotificationCenter.defaultCenter().postNotification(notif)
+                        CoreDataStack.stack.save()
+                    }
                 }
             }
         }
@@ -150,18 +192,24 @@ extension AppDelegate: WCSessionDelegate {
         
         for account in accounts {
             let currentAccount = account as! Account
-            var newAccount = [String: AnyObject]()
-            newAccount["ID"] = "\(currentAccount.objectID)"
-            newAccount["name"] = currentAccount.name
-            newAccount["balance"] = currentAccount.balance
-            newAccount["time"] = currentAccount.time
-            newAccount["startDate"] = currentAccount.startDate
-            newAccount["stoppedDate"] = currentAccount.stoppedDate
-            newAccount["stoppageTime"] = currentAccount.stoppageTime
+            let newAccount = createDataForAccount(currentAccount)
             accountsData.append(newAccount)
         }
         
         return accountsData
+    }
+    
+    private func createDataForAccount(currentAccount: Account) -> [String: AnyObject] {
+        var newAccount = [String: AnyObject]()
+        newAccount["ID"] = "\(currentAccount.objectID)"
+        newAccount["name"] = currentAccount.name
+        newAccount["balance"] = currentAccount.balance
+        newAccount["time"] = currentAccount.time
+        newAccount["startDate"] = currentAccount.startDate
+        newAccount["stoppedDate"] = currentAccount.stoppedDate
+        newAccount["stoppageTime"] = currentAccount.stoppageTime
+        
+        return newAccount
     }
     
     private func findAccount(accountID: String, accounts: NSSet) -> Account? {

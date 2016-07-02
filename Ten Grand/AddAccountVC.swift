@@ -73,6 +73,7 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         
         let notif = NSNotification(name: "AddAccount", object: newAccount)
         NSNotificationCenter.defaultCenter().postNotification(notif)
+        NSNotificationCenter.defaultCenter().postNotificationName("AccountsChanged", object: nil)
         
         dismissViewControllerAnimated(true, completion: nil)
     }

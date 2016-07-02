@@ -11,8 +11,10 @@ import WatchConnectivity
 
 class SharingService: NSObject, WCSessionDelegate {
 
+    //Singleton Instance
     static let sharedInstance = SharingService()
     
+    //Properties
     var session: WCSession? {
         didSet {
             if let session = session {
@@ -21,6 +23,18 @@ class SharingService: NSObject, WCSessionDelegate {
             }
         }
     }
+    
+    var phoneReachable: Bool {
+        if let session = session {
+            if session.reachable {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    //MARK: - Messages
     
     func sendMessage(message: [String: AnyObject], completionHandler: ((response: [String: AnyObject]?, error: NSError?) -> Void)?) {
         
@@ -38,6 +52,14 @@ class SharingService: NSObject, WCSessionDelegate {
             
         }
         
+    }
+    
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
+        if let message = message["accounts"] as? [[String: AnyObject]] {
+            NSNotificationCenter.defaultCenter().postNotificationName("UpdateAccounts", object: message)
+        } else if let message = message["update"] as? [String: AnyObject] {
+            NSNotificationCenter.defaultCenter().postNotificationName("UpdateCurrentAccount", object: message)
+        }
     }
     
 }

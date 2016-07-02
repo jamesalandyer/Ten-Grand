@@ -59,6 +59,12 @@ class AccountDetailVC: UIViewController {
         animEngineTimer = AnimationEngine(constraints: [timerConstraint, timerButtonsConstraint])
         animEngineDeleteAccount = AnimationEngine(constraints: [deleteAccountConstraint, deleteButtonsConstraint])
         
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(newData), name: "Update", object: nil)
     }
     
@@ -66,6 +72,12 @@ class AccountDetailVC: UIViewController {
         super.viewDidAppear(animated)
         
         animEngineTimer.animateOnScreen()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     //MARK: - Actions
@@ -84,9 +96,15 @@ class AccountDetailVC: UIViewController {
             timerLabel.text = "TAP TIMER TO START"
             enableActionButtons(true)
         }
+        
+        CoreDataStack.stack.save()
+        
+        //Send data to watch
+        NSNotificationCenter.defaultCenter().postNotificationName("AccountChanged", object: account)
     }
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
+        //Converted Time
         let amount = floor(elapsedTime) / 10000
         
         let deposit = Deposit(amount: amount, date: nil, context: CoreDataStack.stack.context)
@@ -104,12 +122,20 @@ class AccountDetailVC: UIViewController {
         NSNotificationCenter.defaultCenter().postNotification(notif)
         
         resetTimer()
+        
+        //Send data to watch
+        NSNotificationCenter.defaultCenter().postNotificationName("AccountChanged", object: account)
+        
         updateScreen()
+        
         CoreDataStack.stack.save()
     }
     
     @IBAction func cancelButtonPressed(sender: AnyObject) {
         resetTimer()
+        
+        //Send data to watch
+        NSNotificationCenter.defaultCenter().postNotificationName("AccountChanged", object: account)
     }
     
     @IBAction func deleteAccountButtonPressed(sender: AnyObject) {
@@ -119,7 +145,9 @@ class AccountDetailVC: UIViewController {
     }
     
     @IBAction func deleteButtonPressed(sender: AnyObject) {
-        timer.invalidate()
+        if timer != nil {
+            timer.invalidate()
+        }
         timerButtonsStackView.hidden = true
         timerStackView.hidden = true
         
@@ -130,6 +158,7 @@ class AccountDetailVC: UIViewController {
         
         let notif = NSNotification(name: "RemoveAccount", object: nil)
         NSNotificationCenter.defaultCenter().postNotification(notif)
+        NSNotificationCenter.defaultCenter().postNotificationName("AccountsChanged", object: nil)
         
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -194,6 +223,15 @@ class AccountDetailVC: UIViewController {
      */
     func startTimer() {
         enableActionButtons(false)
+        
+        if timer != nil {
+            if timer.valid {
+                timer.invalidate()
+            }
+            
+            timer = nil
+        }
+        
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         timerLabel.text = "TAP TIMER TO STOP"
     }
@@ -293,14 +331,16 @@ class AccountDetailVC: UIViewController {
         } else if startDate != nil {
             //The user has a timer in memory, start it
             startTimer()
-            
+        } else {
+            updateTime()
         }
     }
     
     func newData(notif: NSNotification) {
-        setTimeAdjustments()
-        updateScreen()
-        updateTime()
+        performUIUpdatesOnMain { 
+            self.setTimeAdjustments()
+            self.updateScreen()
+        }
     }
     
     //MARK: - Segue

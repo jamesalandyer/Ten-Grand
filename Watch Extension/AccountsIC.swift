@@ -13,17 +13,73 @@ import WatchConnectivity
 
 class AccountsIC: WKInterfaceController, WCSessionDelegate {
 
+    //Outlets
     @IBOutlet var accountsTable: WKInterfaceTable!
+    @IBOutlet var noAccountDisplay: WKInterfaceGroup!
     
-    var accounts = [Account]()
-    var accountSort: [Account] {
+    //Properties
+    private var accounts = [Account]()
+    private var accountSort: [Account] {
         return accounts.sort { $0.name < $1.name }
     }
+    
+    //MARK: - Stack
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        SharingService.sharedInstance.sendMessage(["bank": "initialData"]) { (response, error) in
+        retrieveData(nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(dataRecieved), name: "UpdateAccounts", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(retrieveData), name: "UpdateCurrentAccount", object: nil)
+    }
+    
+    override func didAppear() {
+        super.didAppear()
+        
+        updateTable()
+    }
+    
+    //MARK: - Actions
+    
+    @IBAction func refreshButtonPressed() {
+        retrieveData(nil)
+    }
+    
+    //MARK: - Table
+    
+    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
+        let account = accountSort[rowIndex]
+        let controller = "Timer"
+        pushControllerWithName(controller, context: account)
+    }
+    
+    /*
+     Updates the table view.
+     */
+    private func updateTable() {
+        if self.accountSort.count > 0 {
+            noAccountDisplay.setHidden(true)
+            
+            self.accountsTable.setNumberOfRows(self.accountSort.count, withRowType: "AccountRow")
+            
+            for index in 0..<self.accountsTable.numberOfRows {
+                if let controller = self.accountsTable.rowControllerAtIndex(index) as? AccountRowController {
+                    controller.account = self.accountSort[index]
+                }
+            }
+        } else {
+            noAccountDisplay.setHidden(false)
+        }
+    }
+    
+    /*
+     Sends a message to the phone to get account data.
+     
+     - Parameter notif: (Optional) The NSNotification being passed in.
+     */
+    func retrieveData(notif: NSNotification?) {
+        SharingService.sharedInstance.sendMessage(["bank": "retrieveData"]) { (response, error) in
             
             guard error == nil else {
                 print(error)
@@ -40,31 +96,24 @@ class AccountsIC: WKInterfaceController, WCSessionDelegate {
             }
             
         }
-        
     }
     
-    override func didAppear() {
-        super.didAppear()
-        
-        updateTable()
-    }
-    
-    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
-        let account = accountSort[rowIndex]
-        let controller = "Timer"
-        pushControllerWithName(controller, context: account)
-    }
-    
-    private func updateTable() {
-        self.accountsTable.setNumberOfRows(self.accountSort.count, withRowType: "AccountRow")
-            
-        for index in 0..<self.accountsTable.numberOfRows {
-            if let controller = self.accountsTable.rowControllerAtIndex(index) as? AccountRowController {
-                controller.account = self.accountSort[index]
-            }
+    /*
+     Recieves the data from the phone and handles it.
+     
+     - Parameter notif: (Optional) The NSNotification being passed in.
+     */
+    func dataRecieved(notif: NSNotification) {
+        if let data = notif.object as? [[String: AnyObject]] {
+            parseAccountData(data)
         }
     }
     
+    /*
+     Parses the data into Account objects.
+     
+     - Parameter data: The array of dictionaries to parse through.
+     */
     private func parseAccountData(data: [[String: AnyObject]]) {
         accounts = [Account]()
         
