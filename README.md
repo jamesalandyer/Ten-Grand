@@ -17,5 +17,7 @@ If you click on one of your accounts, it will push on the details and timer for 
 
 The timer will continue running even if the user terminates the app. When they go back to the account the timer will show the amount of time since they started the timer. The user can also pause the timer and terminate the app, when they go back to the screen the time they paused at is in the timer. The table view of all of the accounts will turn green for the accounts that have an active running timer.
 
+The watch app is meant to supplement the main app. It allows you to run the timer on your watch. The user is presented with a table of all of their current accounts if they have any. It will show whether the timer is active, stopped or inactive. When they click on the account they see the main timer that will sync with the iphone. If they scroll down, they can choose to save or clear the timer. The app stays up to date by sending messages back and forth with the phone whenever something changes. The user can also see the total amount in each account.
+
 # Running The Project #
 You can download the project and run the Ten Grand.xcworkspace file in the iOS simulator.
