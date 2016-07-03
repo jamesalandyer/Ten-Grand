@@ -68,6 +68,11 @@ class LogVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFet
         return fetchedResultsController.sections![section].numberOfObjects
     }
     
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        //For iPads
+        cell.backgroundColor = UIColor.clearColor()
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let deposit = fetchedResultsController.objectAtIndexPath(indexPath) as! Deposit

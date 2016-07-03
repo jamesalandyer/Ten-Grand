@@ -43,7 +43,7 @@
 		2B18A0471D25EAE000DA16D5 /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2B18A0461D25EAE000DA16D5 /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2B18A04E1D25EAE000DA16D5 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A04D1D25EAE000DA16D5 /* ExtensionDelegate.swift */; };
 		2B18A0501D25EAE000DA16D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B18A04F1D25EAE000DA16D5 /* Assets.xcassets */; };
-		2B18A0541D25EAE000DA16D5 /* Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 2B18A03A1D25EADF00DA16D5 /* Watch.app */; };
+		2B18A0541D25EAE000DA16D5 /* Ten Grand.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 2B18A03A1D25EADF00DA16D5 /* Ten Grand.app */; };
 		2B18A05E1D260CBE00DA16D5 /* AccountsIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A05D1D260CBE00DA16D5 /* AccountsIC.swift */; };
 		2B18A0601D260CD600DA16D5 /* TimerIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A05F1D260CD600DA16D5 /* TimerIC.swift */; };
 		2B18A0641D260D6300DA16D5 /* AccountRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B18A0631D260D6300DA16D5 /* AccountRowController.swift */; };
@@ -89,7 +89,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				2B18A0541D25EAE000DA16D5 /* Watch.app in Embed Watch Content */,
+				2B18A0541D25EAE000DA16D5 /* Ten Grand.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,7 +130,7 @@
 		2B18A0321D25A0B200DA16D5 /* QuotesClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotesClient.swift; sourceTree = "<group>"; };
 		2B18A0341D25A24300DA16D5 /* QuotesConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotesConstants.swift; sourceTree = "<group>"; };
 		2B18A0361D25B4E200DA16D5 /* AnimationEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationEngine.swift; sourceTree = "<group>"; };
-		2B18A03A1D25EADF00DA16D5 /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B18A03A1D25EADF00DA16D5 /* Ten Grand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ten Grand.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B18A03D1D25EAE000DA16D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		2B18A03F1D25EAE000DA16D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B18A0411D25EAE000DA16D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				2B189FD61D21CF4700DA16D5 /* Ten Grand.app */,
-				2B18A03A1D25EADF00DA16D5 /* Watch.app */,
+				2B18A03A1D25EADF00DA16D5 /* Ten Grand.app */,
 				2B18A0461D25EAE000DA16D5 /* Watch Extension.appex */,
 			);
 			name = Products;
@@ -407,7 +407,7 @@
 			);
 			name = Watch;
 			productName = Watch;
-			productReference = 2B18A03A1D25EADF00DA16D5 /* Watch.app */;
+			productReference = 2B18A03A1D25EADF00DA16D5 /* Ten Grand.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		2B18A0451D25EAE000DA16D5 /* Watch Extension */ = {
@@ -439,6 +439,7 @@
 				TargetAttributes = {
 					2B189FD51D21CF4700DA16D5 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = D6HFQ75KS5;
 					};
 					2B18A0391D25EADF00DA16D5 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -645,6 +646,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = "";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -691,6 +693,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = "";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -731,6 +734,7 @@
 			baseConfigurationReference = AE25B7AD0D085831B6821D56 /* Pods-Ten Grand.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Ten Grand/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jamesalandyer.Ten-Grand";
@@ -743,6 +747,7 @@
 			baseConfigurationReference = 6B9D0F8351DAA92A49661615 /* Pods-Ten Grand.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: James Dyer (D6HFQ75KS5)";
 				INFOPLIST_FILE = "Ten Grand/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jamesalandyer.Ten-Grand";
@@ -788,11 +793,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = "";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jamesalandyer.Ten-Grand.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ten Grand";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -804,11 +810,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: James Dyer (D6HFQ75KS5)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jamesalandyer.Ten-Grand.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ten Grand";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -844,6 +852,7 @@
 				2B18A0571D25EAE000DA16D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2B18A0591D25EAE000DA16D5 /* Build configuration list for PBXNativeTarget "Watch" */ = {
 			isa = XCConfigurationList;
@@ -852,6 +861,7 @@
 				2B18A05B1D25EAE000DA16D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
