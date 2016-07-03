@@ -63,7 +63,7 @@ class StoreDetailVC: UIViewController {
         }
     }
     
-    @IBAction func dismissButtonPressed(sender: AnyObject) {
+    @IBAction func dismissButtonPressed() {
         dismissViewControllerAnimated(true, completion: nil)
     }
     

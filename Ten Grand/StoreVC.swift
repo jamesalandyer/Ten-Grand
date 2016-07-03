@@ -59,8 +59,8 @@ class StoreVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
      */
     private func establishNavigation() {
         //Sets Navigation Image
-        let logo = UIImage(named: "nav_logo.png")
-        self.navigationItem.titleView = UIImageView(image: logo)
+        let logo = UIImage(named: "nav_logo")
+        navigationItem.titleView = UIImageView(image: logo)
     }
     
     /*
@@ -68,8 +68,9 @@ class StoreVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
      */
     private func establishFlowLayout() {
         let space: CGFloat = 0
+        let denom: CGFloat = 4.0
         let width = self.view.frame.width
-        let dimensions = width / 4.0
+        let dimensions = width / denom
         
         layoutFlow.minimumInteritemSpacing = space
         layoutFlow.minimumLineSpacing = space

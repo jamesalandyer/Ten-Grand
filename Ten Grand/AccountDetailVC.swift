@@ -46,9 +46,9 @@ class AccountDetailVC: UIViewController {
         
         enableActionButtons(false)
         
-        let saveButtonSelectedImage = UIImage(named: "approve_button_selected.png")
+        let saveButtonSelectedImage = UIImage(named: "approve_button_selected")
         saveButton.setImage(saveButtonSelectedImage, forState: .Highlighted)
-        let cancelButtonSelectedImage = UIImage(named: "cancel_button_selected.png")
+        let cancelButtonSelectedImage = UIImage(named: "cancel_button_selected")
         cancelButton.setImage(cancelButtonSelectedImage, forState: .Highlighted)
 
         setTimeAdjustments()
@@ -174,8 +174,8 @@ class AccountDetailVC: UIViewController {
      */
     private func establishNavigation() {
         //Sets Navigation Image
-        let logo = UIImage(named: "nav_logo.png")
-        self.navigationItem.titleView = UIImageView(image: logo)
+        let logo = UIImage(named: "nav_logo")
+        navigationItem.titleView = UIImageView(image: logo)
     }
     
     /*
