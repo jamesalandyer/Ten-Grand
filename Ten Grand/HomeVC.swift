@@ -83,9 +83,9 @@ class HomeVC: UIViewController {
      */
     private func establishNavigation() {
         //Sets Navigation Image
-        let logo = UIImage(named: "nav_logo.png")
-        self.navigationItem.titleView = UIImageView(image: logo)
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+        let logo = UIImage(named: "nav_logo")
+        navigationItem.titleView = UIImageView(image: logo)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
     }
     
     /*

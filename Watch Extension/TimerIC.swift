@@ -39,7 +39,7 @@ class TimerIC: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        enableButtons(false)
+        toggleButtonState(false)
         
         if let account = context as? Account {
             self.account = account
@@ -83,7 +83,7 @@ class TimerIC: WKInterfaceController {
             } else { //The user stops the timer
                 timer.invalidate()
                 setStopDate(nil)
-                enableButtons(true)
+                toggleButtonState(true)
             }
             
             //Send the updated account to the iphone
@@ -128,7 +128,7 @@ class TimerIC: WKInterfaceController {
      
      - Parameter enable: A Bool of whether to enable the buttons.
      */
-    private func enableButtons(enable: Bool) {
+    private func toggleButtonState(enable: Bool) {
         if SharingService.sharedInstance.phoneReachable {
             reachableLabel.setHidden(true)
             saveButton.setHidden(false)
@@ -136,7 +136,6 @@ class TimerIC: WKInterfaceController {
             saveButton.setEnabled(enable)
             clearButton.setEnabled(enable)
         } else {
-            saveButton.setHidden(true)
             saveButton.setHidden(true)
             reachableLabel.setHidden(false)
         }
@@ -158,7 +157,7 @@ class TimerIC: WKInterfaceController {
      Starts the timer.
      */
     func startTimer() {
-        enableButtons(false)
+        toggleButtonState(false)
         
         if timer != nil {
             if timer.valid {
@@ -205,7 +204,7 @@ class TimerIC: WKInterfaceController {
             elapsedTime = currentTime.timeIntervalSinceDate(startDate) - totalStoppageTime
             convertedTime = floor(elapsedTime) / 10000
         } else {
-            enableButtons(false)
+            toggleButtonState(false)
         }
         
         let formattedString = formatTimeIntoLongCurrency(convertedTime)
@@ -217,7 +216,7 @@ class TimerIC: WKInterfaceController {
      */
     func resetTimer() {
         timerLabel.setText("$ 00,000.0000")
-        enableButtons(false)
+        toggleButtonState(false)
         timer = nil
         startDate = nil
         stoppedDate = nil
@@ -262,7 +261,7 @@ class TimerIC: WKInterfaceController {
                 //Then reset the stop date since the timer is still stopped
                 setStopDate(currentTime)
                 updateTime()
-                enableButtons(true)
+                toggleButtonState(true)
             } else if startDate != nil {
                 //The user has a timer in memory, start it
                 startTimer()
