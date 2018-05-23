@@ -21,3 +21,10 @@ The watch app is meant to supplement the main app. It allows you to run the time
 
 # Running The Project #
 You can download the project and run the Ten Grand.xcworkspace file in the iOS simulator.
+
+# Screenshots #
+![alt tag](https://github.com/jamesalandyer/Ten-Grand/blob/master/ten-grand-1.jpg)
+![alt tag](https://github.com/jamesalandyer/Ten-Grand/blob/master/ten-grand-2.jpg)
+![alt tag](https://github.com/jamesalandyer/Ten-Grand/blob/master/ten-grand-3.jpg)
+![alt tag](https://github.com/jamesalandyer/Ten-Grand/blob/master/ten-grand-4.jpg)
+![alt tag](https://github.com/jamesalandyer/Ten-Grand/blob/master/ten-grand-5.jpg)
